@@ -1,101 +1,115 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Create Movie</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<html ng-app="movie">
+
+<head>
+  <title>Create Movie</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+    $(function () {
+      $("#datepicker").datepicker();
+      $("#datepicker").datepicker('setDate','today');
+    });
   </script>
-  
+
 </head>
 <style class="Main header">
- body {
+  body {
   background-image: url("https://staticdelivery.nexusmods.com/images/110/535448-1328651760.jpg");
   background-size: cover
 }
-
-    .createMovie{font-weight: bold;color: #FF66FF}
+    .createMovie{font-weight: bold;color:rgb(240, 105, 51)}
 </style>
-  <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">ProjectCinema</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Search</a>
-                    </li>
-                    <li class="nav-items">
-                      <a class="nav-link" href="#",style="display: list-item;
-                      text-align: -webkit-match-parent;">Sign Up</a>
-                    </li>
-                    <li class="nav-items">
-                            <a class="nav-link " href="#"style="text-align:right">Sign In</a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-      <div>
-        <div class="main Main header "> 
-                
-            <h1 class="tieude" style="text-align:center;margin-bottom: 40px;color:#CC33FF;text-transform: uppercase;font-weight: bold"> Tạo Phim Mới </h1>
+
+<body ng-controller="createController">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="/images/image.png" width="30" height="30" alt="">
+    </a>
+    <a class="navbar-brand" href="#">ProjectCinema</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Search</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" style="margin-left:auto">
+        <li class="nav-items">
+          <a class="nav-link" href="#">Sign
+            Up </a>
+        </li>
+        <li class="nav-items">
+          <a class="nav-link " href="#" style="text-align:right">Sign In</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div>
+    <div class="main Main header ">
+
+      <h1 class="tieude" style="text-align:center;margin-bottom: 40px;margin-top: 40px;color:rgb(240, 105, 51);text-transform: uppercase;font-weight: bold">
+        Tạo Phim Mới </h1>
 
 
+    </div>
+    <div class="film container">
+      <div class="row">
+        <div class="Image col-md-4 ">
+          <img src="/images/image.png" class="img-fluid" alt="Responsive image">
+          <button type="submit" class="btn btn-primary   " style="margin-top: 10px;margin-left: 90px ;
+                        background-color:rgb(240, 105, 51);border-color: #007bff00 ;border-radius: 20px;font-weight: bold">
+            <i class="fas fa-cloud-upload-alt"></i>Tải ảnh lên</button>
         </div>
-        <div class="film container">
-            <div class="row">
-                    <div class ="Image col-md-4 ">
-                        <img src="https://app-cinema-website.herokuapp.com/images/image.png" class="img-fluid"alt="Responsive image">
-                        <button type="submit" class="btn btn-primary   "style="margin-top: 10px;margin-left: 90px ;
-                        background-color: #CC33FF;border-color: #007bff00 ;border-radius: 20px;font-weight: bold">
-                        <i class="fas fa-cloud-upload-alt"></i>Tải ảnh lên</button>
-                    </div>
-                    <div class="createMovie col-md-8">
-                            <form>
-                                    <div class="form-group">
-                                      <label for="exampleInputEmail1">Tên phim</label>
-                                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="movieHelp" placeholder="Nhập tên phim">
-                                    </div>
-                                    <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Thể loại</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                              <option>Hành động</option>
-                                              <option>Kinh dị</option>
-                                              <option>Tình cảm</option>
-                                              <option>Viễn tưởng</option>
-                                              <option>Gia đình</option>
-                                            </select>
-                                          </div>
-                                          <div class="form-group">
-                                              <label> Ngày ra mắt</label>
-                                                <p><input type="text" id="datepicker"class="form-control "></p>
-                                               </div>
-                                               
-                                          <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Nội dung phim</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"placeholder="Nhập nội dung của bộ phim"></textarea>
-                                              </div>
-                                    <button type="submit" class="btn btn-primary" style="display: block;margin: auto;background-color: #CC33FF;
-                                    border-color: #007bff00 ;border-radius: 20px;font-weight: bold"> 
-                                    <i class="fas fa-cloud-upload-alt"></i>Tải lên</button>
-                                  </form>
-                    </div>
+        <div class="createMovie col-md-8">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tên phim</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="movieHelp" placeholder="Nhập tên phim"
+                ng-model="tenPhim">
             </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Thể loại</label>
+              <select class="form-control" id="exampleFormControlSelect1" ng-model="TheLoai" ng-options="option.name as option.value for option in theLoai">
+                <!-- <option>Hành động</option>
+                <option>Kinh dị</option>
+                <option>Tình cảm</option>
+                <option>Viễn tưởng</option>
+                <option>Gia đình</option> -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label> Ngày ra mắt</label>
+              <p><input type="text" id="datepicker" class="form-control " ng-model="ngayRaMat"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Nội dung phim</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung của bộ phim"
+                ng-model="noiDung"></textarea>
+            </div>
+            <button ng-click="taoPhim()" class="btn btn-primary" style="display: block;margin-left :auto;background-color:rgb(240, 105, 51);
+                                    border-color: #007bff00 ;border-radius: 20px;font-weight: bold">
+              <i class="fas fa-cloud-upload-alt"></i>Tải lên</button>
+          </form>
         </div>
       </div>
-  </body>
+    </div>
+  </div>
+</body>
+
+<script src="/javascripts/movie/create.js"></script>
+
 </html>
