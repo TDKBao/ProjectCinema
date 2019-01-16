@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var movieRouter = require('./api/route/movie');
 
 var app = express();
-require('./api/model/Moive');
+// require('./api/model/Moive');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

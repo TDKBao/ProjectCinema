@@ -14,8 +14,12 @@ const layPhim = async function(){
     var listMovie = await Movie.find()
     return{listMovie:listMovie}
 }
-
+const getChiTietPhim = async function(id){
+    var chiTiet = await Movie.findOne({_id: id});
+    return{chiTiet:chiTiet}
+}
 module.exports = {
     taoPhim: taoPhim,
-    layPhim: layPhim
+    layPhim: layPhim,
+    getChiTietPhim:getChiTietPhim
 }
