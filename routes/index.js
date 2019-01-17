@@ -15,4 +15,7 @@ router.get('/:id', function(req, res) {
   res.render('movie/details', { id: id });
 });
 
+router.get('/users/signup', function(req, res) {
+  res.render('users/signup', { title: 'Sign Up' });
+});
 module.exports = router;

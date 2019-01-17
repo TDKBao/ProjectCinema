@@ -7,13 +7,13 @@ app.controller('createController', function ($scope, $http) {
             noiDung: $scope.noiDung,
             theLoai: $scope.TheLoai,
             ngayRaMat: ngayRaMat
-
         }
-
-
 
         $http.post('/api/movie', data).then(function (res) {
             console.log(res)
+            window.alert("Tạo phim thành công")
+            window.location.reload();
+            window.location.href="/";
         })
 
     }
