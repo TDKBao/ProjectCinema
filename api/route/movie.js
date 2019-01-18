@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var movieController = require('../controller/movieController')
-
+var fileUpload = require('express-fileupload')
 /* GET home page. */
 router.get('/', async function (req, res) {
     try {
@@ -23,15 +23,14 @@ router.get('/:id', async function (req, res) {
 });
 
 
-router.post('/', async function (req, res) {
+router.post('/', fileUpload(), async function (req, res) {
     //   console.log(req.body)
     try {
+        req.body.flim = req.files.flim.name;
         var movie = await movieController.taoPhim(req.body);
-
     res.send({
         movie: movie
     })
-        
     } catch (error) {
         console.log(error)
         res.status(500).send({error:error})

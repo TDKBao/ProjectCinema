@@ -34,10 +34,11 @@
     <div class="film container">
       <div class="row">
         <div class="Image col-md-4 ">
-          <img src="/images/image.png" class="img-fluid" alt="Responsive image">
-          <button type="submit" class="btn btn-primary   " style="margin-top: 10px;margin-left: 90px ;
+            <!-- <input type="file" class="custom-file-input"> -->
+          <img href="" ng-click="clickUploadImage()" src="/images/image.png" class="img-fluid" alt="Responsive image" id="imageUpload">
+          <button type="submit" class="btn btn-primary   "ng-click="clickUploadImage()" style="margin-top: 10px;margin-left: 90px ;
                         background-color:#FF3333 ;border-radius: 20px;font-weight: bold">
-            <i class="fas fa-cloud-upload-alt"></i>Đăng ảnh</button>
+            <input type="file" style="display: none" accept="image/*" onchange="readURL(this)" id="fileInput"><i class="fas fa-cloud-upload-alt" ></i>Đăng ảnh</button></input>
         </div>
         <div class="createMovie col-md-8 my-text-bold">
           <form>
