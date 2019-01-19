@@ -3,15 +3,19 @@ var   NON_EMPTY_CLASS = 'ng-empty';
 app.controller('usersController', function ($scope, $http) {
     $scope.dangKy = function () {
         var data = {
-            tenNguoiDung: $scope.tenNguoiDung, NON_EMPTY_CLASS,
-            email: $scope.email, NON_EMPTY_CLASS,
-            matKhau: $scope.matKhau,NON_EMPTY_CLASS,
+            tenNguoiDung: $scope.tenNguoiDung, 
+            email: $scope.email, 
+            password: $scope.password,
         }
         $http.post( '/api/users', data).then(function (res) {
+            
             console.log(res)
             window.alert("Tạo tài khoản thành công")
             window.location.reload();
             window.location.href="/";
+            let userName = res.data.user.tenNguoiDung
+
+             setCookie('tenNguoiDung', userName)
         })
 
     }

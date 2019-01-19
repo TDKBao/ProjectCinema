@@ -3,7 +3,7 @@
 
 <head>
   
-  
+  <!-- <link rel="shortcut icon" href="../images/icon.jpg"/> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -22,8 +22,8 @@
     border-style: solid
   }
 </style>
+<% include header.ejs %>
 <body ng-controller="listMovieController">
-  <% include header.ejs %>
 
 
   <!-- <div ng-repeat="movie in listMovie">
@@ -39,7 +39,7 @@
       <div class="border col-md-3" ng-repeat="movie in listMovie" style="float: left ; margin-top:10px">
         <a href="/{{movie._id}}" style="text-decoration: none; color:black">
         
-          <img ng-src="/images/test.jpg" style="margin-top:40px">
+          <img src="/images/{{movie.flim}}" style="margin-top:40px">
           <div class="detail" >
             <h2 class="name-film ng-binding"> {{movie.tenPhim}} </h2>
             <p class="content-film ng-binding">

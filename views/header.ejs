@@ -25,7 +25,7 @@
                         <a class="nav-link" href="#">Search</a>
                     </li>
                 </ul> -->
-                <ul class="navbar-nav" style="margin-left:auto">
+                <ul class="navbar-nav" style="margin-left:auto " ng-show="!isLogin">
                     <li class="nav-items ">
                         <a class="customcolor textbold " href="/users/signup">Đăng ký</a>
                     </li>
@@ -34,14 +34,22 @@
                         <a class="customcolor textbold " href="/users/signin">Đăng nhập</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav" style="margin-left:20px">
+                <a href="../"><i ng-click="logOut()"  ng-show="isLogin" 
+                    class="fas fa-power-off " ></i></a>
+
+                <ul class="navbar-nav" style="margin-left:20px" ng-show="isLogin">
                     <li class="nav-items">
                         <a class="customcolor textbold" href="/movie/create">Tạo phim
                         </a>
-
-
                     </li>
                 </ul>
+                <i ng-show="isLogin">
+                    <a href="/movie/create" style="font-size:30px;float: right ;margin-right: 15px;margin-top:10px ;font-family: 'Righteous', cursive;">
+                        <b><i class="fas fa-user"></i> {{tenNguoiDung}}</b></a>
+                        
+                      
+
+                </i>
 
             </div>
         </nav>

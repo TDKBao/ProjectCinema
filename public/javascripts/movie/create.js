@@ -31,7 +31,8 @@ app.controller('createController', function ($scope, $http) {
             method: 'POST', url: '/api/movie', headers: {
                 'Content-Type': undefined
             },
-            data: formData
+            data: formData,
+            headers : { 'Content-Type': undefined } 
         }).then(function (res) {
             console.log(res)
             window.alert("Tạo phim thành công")

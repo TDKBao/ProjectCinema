@@ -6,7 +6,7 @@ var MovieSchema = new Schema({
     theLoai: { type: String },
     ngayRaMat: { type: Number },
     noiDung: { type: String },
-    flim:{type:String}
+    image:{type:String}
 }
 );
 

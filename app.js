@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var jwt= require('jsonwebtoken');
+var session = require('express-session');
 require('./api/model/Movie')
 require('./api/model/Users')
 var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
 var movieRouter = require('./api/route/movie')
 var usersRouter = require('./api/route/users');
 
@@ -22,9 +24,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secure: true,
+  httpOnly: true,
+  secret: 'asdqwe',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 app.use('/api/movie', movieRouter);
 app.use('/api/users', usersRouter);
 
