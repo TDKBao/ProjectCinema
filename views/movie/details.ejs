@@ -20,7 +20,7 @@
 <form role="form" >
         <div class="container col-sm-12 col-md-5 my-upload-image text-center animated fadeIn"style="    margin-top: 50px;
         margin-bottom: 50px;">
-            <img src="/images/test.jpg">
+          <img src="images/{{movie.image}}}" style="margin-top: 10px;height: 300px; width:400px;object-fit: cover;">
         </div>
 
         <div class="container col-sm-6 col-md-4 my-form-film animated flipInX">
@@ -42,24 +42,7 @@
             </div>
         </div>
     </form>
-    <!-- <div class="container my-detail-film ng-scope" >
-            <div class="container my-container-center my-title-header animated flipInX">
-                <h1 class="title-name-film ng-binding"> {{phim.tenPhim}}</h1>
-            </div>
-            <div class="container col-sm-12 col-md-7 animated flipInX">
-                <h4 class="ng-binding"> Thể loại: {{phim.theLoai}}  </h4>
-                <h4 class="ng-binding"> Ngày ra mắt: &nbsp;  {{phim.ngayRaMat| date:'dd-MM-yyyy' }} </h4>
-                <h4> Nội dung mô tả: {{phim.noiDung}}   </h4>
-            </div>
-            </div> -->
-
-        <!-- <div class="container my-container-center my-bot-form">
-                    <button type="submit " class="btn btn-primary my-btn text-center animated slideInUp" onclick="javascript:window.location.href='/'" style="" id="btnReturn">
-                        <i class="fa fa-arrow-circle-left fa-lg" aria-hidden="true"></i>
-                        Quay trở về
-                    </button>
-                </div> -->
-
+    
         <!-- Modal Show Image  -->
         <!-- <div class="modal fade animated zoomIn my-modal-image" id="modalImage" tabindex="-1" aria-hidden="true">
             <div class="text-center" style="margin: 50px">

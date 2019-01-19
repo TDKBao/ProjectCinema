@@ -65,7 +65,7 @@ function readURL(input) {
         }
 
         reader.readAsDataURL(input.files[0]);
-        formData.append("flim", input.files[0]);    }
+        formData.append("image", input.files[0]);    }
 }
 
 $("#inputFile").change(function () {
