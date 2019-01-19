@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var movieController = require('../controller/movieController');
 var userController = require('../controller/usersController');
+var jwt = require('jsonwebtoken');
 var fileUpload = require('express-fileupload');
 const path = require('path');
 /* GET home page. */
 router.get('/', async function (req, res) {
     try {
         var dsPhim = await movieController.layPhim();
-        // var checkLogin = false;
         res.send({
             dsPhim: dsPhim
         })
@@ -29,7 +29,7 @@ router.get('/:id', async function (req, res) {
 router.post('/', fileUpload(), async function (req, res) {
     //   console.log(req.body)
     try {
-        var file = req.files.film;
+        var file = req.files.flim;
         req.body.image = file.name;
         var url = path.join(path.join(__dirname, '../../'), 'public/images/');
 

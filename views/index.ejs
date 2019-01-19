@@ -2,7 +2,7 @@
 <html ng-app="movie">
 
 <head>
-
+  
   <!-- <link rel="shortcut icon" href="../images/icon.jpg"/> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
@@ -11,11 +11,11 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+ 
 
 </head>
 <style>
-  .border {
+  .border{
     margin-bottom: 50px;
 
     /* margin-left: 10px; */
@@ -23,7 +23,6 @@
   }
 </style>
 <% include header.ejs %>
-
 <body ng-controller="listMovieController">
 
 
@@ -33,19 +32,18 @@
     <p><span>Thể loại: </span>{{movie.theLoai}}</p>
     <p><span>Ngày ra mắt: </span>{{movie.ngayRaMat| date:'dd-MM-yyyy' }} </p>
   </div> -->
-
+  
   <div class="row" style="text-align: center;margin-right: 0px !important; margin-top: 20px; margin-left: 10px;">
     <div class="col-md-12">
-
-      <div class="border col-md-4" ng-repeat="movie in listMovie" style="float: left ; margin-top:10px">
+        
+      <div class="border col-md-3" ng-repeat="movie in listMovie" style="float: left ; margin-top:10px">
         <a href="/{{movie._id}}" style="text-decoration: none; color:black">
-
-          <img src="" id="image" style="margin-top: 10px;height: 300px; width:400px;object-fit: cover;">
-          <div class="detail">
-            <h2 class="name-film ng-binding" style="margin-top: 20px;
-            "> {{movie.tenPhim}} </h2>
+        
+          <img src=""  id="image"style="margin-top: 10px;height: 300px; width:400px;object-fit: cover;">
+          <div class="detail" >
+            <h2 class="name-film ng-binding"> {{movie.tenPhim}} </h2>
             <p class="content-film ng-binding">
-              <hr class="hr-film">
+                <hr class="hr-film">
               <span class="my-text-bold"> Thể loại: </span>{{movie.theLoai}} </p>
             <p class="content-film ng-binding" ng-init="content=minContentFilm(film)">
               <span class="my-text-bold"> Ngày ra mắt: </span>{{movie.ngayRaMat| date:'dd-MM-yyyy' }}</p>
@@ -55,14 +53,16 @@
     </div>
   </div>
 
-  <footer>
-    <% include footer.ejs %>
-  </footer>
+<footer >
+  <% include footer.ejs %>
+</footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/javascripts/movie/detail.js"></script>
 <script src="/javascripts/index.js"></script>
-
 </html>
+
+
+

@@ -1,5 +1,3 @@
-import { set } from "mongoose";
-
 var app = angular.module('users', []);
 var   NON_EMPTY_CLASS = 'ng-empty';
 app.controller('usersController', function ($scope, $http) {
@@ -10,15 +8,14 @@ app.controller('usersController', function ($scope, $http) {
             password: $scope.password,
         }
         $http.post( '/api/users', data).then(function (res) {
-            await console.log(res)
-            // setCookie('tenNguoiDung',userName)
+            
             console.log(res)
             window.alert("Tạo tài khoản thành công")
             window.location.reload();
             window.location.href="/";
-            // let userName = res.data.user.tenNguoiDung
+            let userName = res.data.user.tenNguoiDung
 
-            //  setCookie('tenNguoiDung', userName)
+             setCookie('tenNguoiDung', userName)
         })
 
     }

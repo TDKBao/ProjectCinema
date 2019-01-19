@@ -16,7 +16,6 @@ app.controller('listMovieController', function ($scope, $http) {
         } else {
             $scope.isLogin = true
         }
-        await document.getElementById('image').setAttribute('src',`images/${$scope.phim.tenPhim}.png`);
 
     })
     

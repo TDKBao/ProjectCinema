@@ -1,12 +1,14 @@
 var express = require('express');
+var session = require('express-session')
 var router = express.Router();
 var userController = require('../controller/usersController');
+var jwt = require('jsonwebtoken');
 
 /* GET home page. */
 router.post('/', async function (req, res) {
     try {
-        // var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
-        // req.session.token = token;
+        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
+        req.session.token = token;
         var userDangKy = await userController.dangKy(req.body);
         res.send({ userDangKy: userDangKy });
 
@@ -16,12 +18,12 @@ router.post('/', async function (req, res) {
     }
 
 })
-// router.get('/', async function(req,res){
-//     req.session.destroy();
-//     res.send({
-//         mess: 'LogOut Thành công'
-//     })
-// })
+router.get('/', async function(req,res){
+    req.session.destroy();
+    res.send({
+        mess: 'LogOut Thành công'
+    })
+})
 router.post('/login',async function(req,res){
 
     var token =jwt.sign({data: req.body.Email}, 'secret', { expiresIn: '1y' });

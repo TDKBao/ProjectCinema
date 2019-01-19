@@ -19,15 +19,15 @@ const checkLogin = async function(data){
     let user = await Users.findOne({email:data.Email});
     if(user){
         if(user.password===data.password){
-        return true
+        return user
         }
         else{
-            return false
+            return 'Sai mật khẩu'
         }
 
     }
     else{
-        return false
+        return 'Sai email'
     }
 }
 
