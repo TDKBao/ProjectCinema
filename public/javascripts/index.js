@@ -2,23 +2,23 @@ var app = angular.module('movie', []);
 
 app.controller('listMovieController', function ($scope, $http) {
     $scope.tenNguoiDung = undefined
-    $scope.isLogin = false
-
-    $http.get('api/movie/').then(function(res){
+    $scope.isLogin = false    
+    $http.get('api/movie/').then(async function(res){     
         $scope.listMovie = res.data.dsPhim.listMovie;
         $scope.user = res.data.user;
         $scope.checkLogin=res.data.checkLogin;
         console.log($scope.listMovie);
         $scope.tenNguoiDung = getCookie("tenNguoiDung")
-        
+
         if (!$scope.tenNguoiDung) {
             $scope.isLogin = false
         } else {
             $scope.isLogin = true
-        }
+        }           
+         await document.getElementById('image').setAttribute('src',`images/${$scope.phim.tenPhim}.png`);
 
-    })
-    
+    })    
+
     $scope.logOut = function(){
         // $http.get('/api/user').then(function (res) {
 
