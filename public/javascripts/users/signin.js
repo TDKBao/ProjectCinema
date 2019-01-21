@@ -19,7 +19,7 @@ app.controller('loginController',function($scope,$http){
             } else {
                 window.alert('Đăng nhập thành công');
                 window.location.href="/"
-                let userName = res.data.user.tenNguoiDung
+                let userName = res.data.userDangKy.user.tenNguoiDung
                 setCookie('tenNguoiDung', userName)
             }
             // console.log(res)
