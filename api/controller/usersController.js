@@ -8,33 +8,37 @@ const dangKy = async function (data) {
         user: user
     };
 }
-const getUserByEmail = async function(email){
-    let user= await User.findOne({Email:email});
-    return   user;
-    
+const getUserByEmail = async function (email) {
+    let user = await User.findOne({ Email: email });
+    return user;
 }
 
-
-const checkLogin = async function(data){
-    let user = await Users.findOne({email:data.Email});
-    if(user){
-        if(user.password===data.password){
-        return user
-        }
-        else{
-            return 'Sai mật khẩu'
-        }
-
+const checkLogin = async function (data) {
+    let user = await Users.findOne({ email: data.Email });
+    if(!user){
+        throw new Error('User not found')
     }
-    else{
-        return 'Sai email'
-    }
+     if (user.password !== data.password){
+        throw new Error('User not found')
+     }
+     return user
+    // if (user) {
+    //     if (user.password === data.password) {
+    //         return user
+    //     }
+    //     else {
+    //         return false
+    //     }
+    // }
+    // else {
+    //     return false
+    // }
 }
 
 
 
 module.exports = {
     dangKy: dangKy,
-    getUserByEmail:getUserByEmail,
-    checkLogin:checkLogin
+    getUserByEmail: getUserByEmail,
+    checkLogin: checkLogin
 }

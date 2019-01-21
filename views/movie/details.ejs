@@ -18,9 +18,10 @@
     <% include ../header.ejs %>
     
 <form role="form" >
+        <p class="hide" id="film-id"></p>
         <div class="container col-sm-12 col-md-5 my-upload-image text-center animated fadeIn"style="    margin-top: 50px;
         margin-bottom: 50px;">
-          <img src="" style="margin-top: 10px;height: 300px; width:400px;object-fit: cover;" id="image">
+          <img src="/images/{{phim.image}}" style="margin-top: 10px;height: 300px; width:400px;object-fit: cover;">
         </div>
 
         <div class="container col-sm-6 col-md-4 my-form-film animated flipInX">
@@ -38,9 +39,17 @@
 
             <div class="form-group">
                    <span style="font-size:28px"> <strong style="font-size:30px">Nội dung mô tả:</strong> {{phim.noiDung}} </span>
-               
+                  
             </div>
+            
         </div>
+        <div class="container my-container-right my-bot-form">
+            <button type="submit" class="btn btn-primary my-btn text-center animated slideInUp" ng-click="clickUpLoadFilm()" style="margin-right:15px">
+                <i class="fa fa-edit fa-lg" ></i>
+                   Sửa
+            </button>
+        </div>
+        
     </form>
     
         <!-- Modal Show Image  -->

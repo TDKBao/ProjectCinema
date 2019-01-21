@@ -21,4 +21,11 @@ router.get('/users/signup', function(req, res, next) {
 router.get('/users/signin', function(req, res, next) {
   res.render('users/signin', { title: 'Sign-in' });
 });
+
+router.get('/:id/edit',function(req,res)
+{
+  var id = req.params.id;
+  res.render('movie/edit',{id:id});
+});
+
 module.exports = router;

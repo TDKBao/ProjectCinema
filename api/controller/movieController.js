@@ -14,11 +14,11 @@ const layPhim = async function () {
     return { listMovie: listMovie }
 }
 
-
 const getChiTietPhim = async function (id) {
     var chiTiet = await Movie.findOne({ _id: id });
-    return { chiTiet: chiTiet }
+    return chiTiet;
 }
+
 
 module.exports = {
     taoPhim: taoPhim,

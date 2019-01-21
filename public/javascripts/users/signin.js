@@ -11,18 +11,20 @@ app.controller('loginController',function($scope,$http){
 
         }
         $http.post(window.location.origin+'/api/users/login',data).then(function(res){
-            console.log(res)
+            // console.log(res)
             if (res.data.user === "Sai mật khẩu") {
-                window.alert('Sai mật khẩu')
+                window.alert('Sai mk');
+                
             } else if (res.data.user === "Sai email") {
                 window.alert('Bạn nhập sai email');
             } else {
                 window.alert('Đăng nhập thành công');
                 window.location.href="/"
-                let userName = res.data.userDangKy.user.tenNguoiDung
+                let userName = res.data.user.tenNguoiDung
                 setCookie('tenNguoiDung', userName)
             }
-            // console.log(res)
+        }).catch(function(res){
+            console.log(res)
         })
     }
 });

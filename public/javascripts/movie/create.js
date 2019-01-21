@@ -9,24 +9,7 @@ app.controller('createController', function ($scope, $http) {
         formData.append("noiDung", $scope.noiDung);
         formData.append("theLoai", $scope.TheLoai);
         formData.append("ngayRaMat", ngayRaMat);
-        // formData.append("clickUploadImage", readAsDataURL);
 
-
-
-
-        // var data = {
-        //     tenPhim: $scope.tenPhim,
-        //     noiDung: $scope.noiDung,
-        //     theLoai: $scope.TheLoai,
-        //     ngayRaMat: ngayRaMat
-        // }
-
-        // $http.post('/api/movie', formData).then(function (res) {
-        //     console.log(res)
-        //     window.alert("Tạo phim thành công")
-        //     window.location.reload();
-        //     window.location.href="/";
-        // })
         $http({
             method: 'POST', url: '/api/movie', headers: {
                 'Content-Type': undefined
@@ -65,7 +48,7 @@ function readURL(input) {
         }
 
         reader.readAsDataURL(input.files[0]);
-        formData.append("flim", input.files[0]);    }
+        formData.append("image", input.files[0]);    }
 }
 
 $("#inputFile").change(function () {

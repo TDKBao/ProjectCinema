@@ -1,6 +1,7 @@
 var app = angular.module('users', []);
 var   NON_EMPTY_CLASS = 'ng-empty';
 app.controller('usersController', function ($scope, $http) {
+    $scope.checkLogin==false;
     $scope.dangKy = function () {
         var data = {
             tenNguoiDung: $scope.tenNguoiDung, 
@@ -13,9 +14,10 @@ app.controller('usersController', function ($scope, $http) {
             window.alert("Tạo tài khoản thành công")
             window.location.reload();
             window.location.href="/";
-            let userName = res.data.user.tenNguoiDung
+            let userName = res.data.userDangKy.user.tenNguoiDung
 
              setCookie('tenNguoiDung', userName)
+           
         })
 
     }
@@ -37,3 +39,9 @@ app.controller('usersController', function ($scope, $http) {
 //     ];
 //     $scope.TheLoai=$scope.theLoai[0].value;
 // });
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }

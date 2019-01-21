@@ -29,11 +29,11 @@ router.get('/:id', async function (req, res) {
 router.post('/', fileUpload(), async function (req, res) {
     //   console.log(req.body)
     try {
-        var file = req.files.flim;
+        var file = req.files.image;
         req.body.image = file.name;
         var url = path.join(path.join(__dirname, '../../'), 'public/images/');
 
-        file.mv(url + req.files.flim.name, async function () {
+        file.mv(url + file.name, async function () {
             var movie = await movieController.taoPhim(req.body);
             res.send({
                 movie: movie
@@ -42,12 +42,17 @@ router.post('/', fileUpload(), async function (req, res) {
     } catch (error) {
         console.log(error)
         res.status(500).send({ error: error })
-
     }
 
 
     //   res.send(req.body)
 });
+router.post('/edit',async function(req,res){
+    var movieId = req.body.movieId;
+    var movie = await movieController.getChiTietPhim(movieId);
+    res.send(movie);
+
+})
 
 
 
