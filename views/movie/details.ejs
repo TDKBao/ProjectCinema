@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="movie" ng-controller="detailsController">
-
+<% include ../header.ejs %>
 <head >
 
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -15,9 +15,9 @@
 </head>
 
 <body>
-    <% include ../header.ejs %>
     
-<form role="form" >
+    
+<form role="form"  >
         <p class="hide" id="film-id"></p>
         <div class="container col-sm-12 col-md-5 my-upload-image text-center animated fadeIn"style="    margin-top: 50px;
         margin-bottom: 50px;">
@@ -25,11 +25,11 @@
         </div>
 
         <div class="container col-sm-6 col-md-4 my-form-film animated flipInX">
-                <div class="from-group title-center ">
+                <div class="from-group title-center "style="margin-bottom: 50px;">
                         <span style="font-size:50px "> {{phim.tenPhim}} </span>
                     </div>
-
-            <div class="form-group">
+<div class="border"style="text-align: center">
+            <div class="form-group" >
                 <span style="font-size:28px"><strong style="font-size:30px">Thể loại phim:</strong>{{phim.theLoai}}</span>
             </div>
 
@@ -42,8 +42,8 @@
                   
             </div>
             
-        </div>
-        <div class="container my-container-right my-bot-form">
+        </div></div>
+        <div class="container my-container-right my-bot-form" style="text-align:center">
             <button type="submit" class="btn btn-primary my-btn text-center animated slideInUp" ng-click="clickUpLoadFilm()" style="margin-right:15px">
                 <i class="fa fa-edit fa-lg" ></i>
                    Sửa

@@ -20,11 +20,6 @@ app.controller('listMovieController', function ($scope, $http) {
     })
     
     $scope.logOut = function(){
-        // $http.get('/api/user').then(function (res) {
-
-        //        var mess= res.data.mess
-        //         console.log(res)
-        //     })
         setCookie("tenNguoiDung",'')
 
     }

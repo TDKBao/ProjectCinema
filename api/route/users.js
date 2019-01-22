@@ -8,8 +8,6 @@ var jwt = require('jsonwebtoken');
 router.post('/', async function (req, res) {
     try {
         var userDangKy = await userController.dangKy(req.body);
-        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
-        req.session.token = token;
         res.send({ userDangKy: userDangKy });
     } catch (error) {
         console.log(error)
@@ -26,16 +24,24 @@ router.post('/', async function (req, res) {
 router.post('/login', async function (req, res) {
     try {
         var user = await userController.checkLogin(req.body);
-        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
-        req.session.token = token;
         res.send({
             user: user
         })
     } catch (error) {
         console.log(error)
-        res.status(400).send({errorMessage: error.message})
+        
     }
 
-
+router.get('/profile',async function(req,res){
+    try {
+        var user = await userController.checkLogin(req.body);
+        res.send({
+            user: user
+        })
+    } catch (error) {
+        console.log(error)
+        // res.status(400).send({errorMessage: error.message})
+    }
+})
 });
 module.exports = router;

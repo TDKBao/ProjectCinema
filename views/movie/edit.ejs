@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="movie">
+  <% include ../header.ejs %>
 
 <head>
  
@@ -26,7 +27,6 @@
 <body ng-controller="editController">
   <div>
     <div class="main Main header ">
-        <% include ../header.ejs %>
 
       <h1 class="tieude" style="text-align:center;margin-bottom: 40px;margin-top: 40px;color:#FF3333;text-transform: uppercase;font-weight: bold">
         Sửa thông tin phim </h1>
@@ -35,7 +35,7 @@
       <div class="row">
         <div class="Image col-md-4 ">
             <!-- <input type="file" class="custom-file-input"> -->
-          <img href="" ng-click="clickUploadImage()" src="/images/{{phim.image}}" class="img-fluid" alt="Responsive image" id="imageUpload">
+          <img href="" ng-click="clickUploadImage()" ng-src="/images/{{phim.image}}"src="/images/image.png" class="img-fluid" alt="Responsive image" id="imageUpload">
           <button type="submit" class="btn btn-primary   "ng-click="clickUploadImage()" style="margin-top: 10px;margin-left: 90px ;
                         background-color:#FF3333 ;border-radius: 20px;font-weight: bold">
             <input type="file" style="display: none" accept="image/*" onchange="readURL(this)" id="fileInput"><i class="fas fa-cloud-upload-alt" ></i>Đăng ảnh</button></input>
@@ -67,7 +67,7 @@
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung của bộ phim"
                 ng-model="noiDung"></textarea>
             </div>
-            <button  type="submit"ng-click="taoPhim()" class="btn btn-primary" style="display: block;margin-left :auto;background-color:#FF3333;
+            <button  type="submit"ng-click="suaPhim()" class="btn btn-primary" style="display: block;margin-left :auto;background-color:#FF3333;
                                    ;border-radius: 20px;font-weight: bold">
               <i class="fa fa-film" aria-hidden="true" href="/"></i>
             </i>Sửa phim</button>
@@ -77,9 +77,7 @@
       </div>
     </div>
   </div>
-  <footer >
-  <% include ../footer.ejs %>
-</footer>
+ 
 </body>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -92,4 +90,7 @@
     });
   </script>
  <script src="/javascripts/movie/edit.js"></script>
+  <footer >
+  <% include ../footer.ejs %>
+</footer>
 </html>

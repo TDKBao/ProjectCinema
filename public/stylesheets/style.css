@@ -1,7 +1,40 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.btn.btn-primary:hover{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary:active{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary:focus{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:hover{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:active{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:focus{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary{  
+  background-image: url(/images/header.jpg);
+  color: white;
+}
+.create-form-button{
+  width: 150px;
+  height: 50px;
+  font-size: 20px !important;
+  font-weight: 100;  
+}
+.btn-login{
+  margin-right: 15px !important;
+}
+.parent{
+  margin-bottom: 34px;
+}
 a {
   color: #FF0000;
 }
@@ -37,6 +70,9 @@ a {
 }
 .sizefont{
   size: 30px
+}
+.sizefont50{
+  size :50px
 }
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;

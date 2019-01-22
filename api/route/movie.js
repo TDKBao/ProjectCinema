@@ -22,7 +22,9 @@ router.get('/', async function (req, res) {
 
 router.get('/:id', async function (req, res) {
     var chiTiet = await movieController.getChiTietPhim(req.params.id);
-    res.send(chiTiet);
+    res.send(
+        chiTiet
+    );
 });
 
 
@@ -47,9 +49,21 @@ router.post('/', fileUpload(), async function (req, res) {
 
     //   res.send(req.body)
 });
-router.post('/edit',async function(req,res){
+router.post('/edit', fileUpload(), async function (req, res) {
     var movieId = req.body.movieId;
+    var file = req.files.image;
+    req.body.image = file.name;
+
     var movie = await movieController.getChiTietPhim(movieId);
+    var url = path.join(path.join(__dirname, '../../'), 'public/images/');
+    file.mv(url + file.name, function () {})
+    movie.ngayRaMat = req.body.ngayRaMat
+    movie.tenPhim = req.body.tenPhim
+    movie.noiDung = req.body.noiDung
+    movie.image = req.body.image
+    movie.theLoai = req.body.theLoai
+    await movieController.suaPhim(movie)
+
     res.send(movie);
 
 })

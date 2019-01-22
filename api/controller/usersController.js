@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 
 const dangKy = async function (data) {
-    var user = new Users(data);
+        var user = new Users(data);
     await user.save();
     return {
         user: user
@@ -14,26 +14,21 @@ const getUserByEmail = async function (email) {
 }
 
 const checkLogin = async function (data) {
-    let user = await Users.findOne({ email: data.Email });
-    if(!user){
-        throw new Error('User not found')
-    }
-     if (user.password !== data.password){
-        throw new Error('User not found')
-     }
-     return user
-    // if (user) {
-    //     if (user.password === data.password) {
-    //         return user
-    //     }
-    //     else {
-    //         return false
-    //     }
+    user = await User.findOne({Email:email})
+    // let user = await Users.find({email: data.password})
+    // if(!user){
+    //     throw new Error('User not found')
     // }
-    // else {
-    //     return false
-    // }
-}
+    //  if (user.password !== data.password){
+    //     throw new Error('User not found')
+    //  }
+    //  return user
+    if (user) {
+        if (user.password === data.password) {
+            return user
+        }
+       else window.alert("Nhập sai mật khẩu")
+    }}
 
 
 

@@ -1,10 +1,21 @@
 var app = angular.module('users', []);
 var   NON_EMPTY_CLASS = 'ng-empty';
 app.controller('usersController', function ($scope, $http) {
-    $scope.checkLogin==false;
+    function checkLogin()
+    {
+        var error = false
+        if((!$scope.password) || (!$scope.email ))
+        {
+            error = true
+        }
+        return error
+    }
+
     $scope.dangKy = function () {
+        var check = checkLogin()
+        if(!check){
         var data = {
-            tenNguoiDung: $scope.tenNguoiDung, 
+            tenNguoiDung: $scope.userName, 
             email: $scope.email, 
             password: $scope.password,
         }
@@ -18,7 +29,8 @@ app.controller('usersController', function ($scope, $http) {
 
              setCookie('tenNguoiDung', userName)
            
-        })
+        })}
+        else window.alert("Vui lòng nhập đầy đủ thông tin")
 
     }
 });

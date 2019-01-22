@@ -1,38 +1,43 @@
 var app = angular.module('movie', []);
 app.controller('detailsController', function ($scope, $http) {
-    var id = $('#id').text()
-    $http.get('/api/movie/' + id).then(function (res) {
-
+        var id = $('#id').text();
+        $scope.tenNguoiDung = getCookie("tenNguoiDung");
+    $http.get('/api/movie/' + id, ).then(function (res) {
         $scope.phim = res.data
         $scope.id = res.data._id
         console.log(res)
-        $scope.clickUpLoadFilm = function () {
+    })
+    $scope.logOut = function(){
+        // $http.get('/api/user').then(function (res) {
+
+        //        var mess= res.data.mess
+        //         console.log(res)
+        //     })
+        setCookie("tenNguoiDung",'')
+
+    }
+$scope.clickUpLoadFilm = function () {
             setCookie("movieId",id);
             window.location.href = $scope.id + '/edit'
         }
-        // $http.put('api/movie'+ id +'/edit').then(function(res){
-        //     $scope.movie = response.data.cinema
-        //     $scope.name = response.data.cinema.name
-        //     $scope.content = response.data.cinema.content
-        //     $scope.genre = response.data.cinema.genre
-        //     $scope.formTitle = 'Sửa phim'
-        //     $scope.buttonTitle = 'Lưu phim'
-        //     $('#datepicker').data('DateTimePicker').destroy()
-        //     $('#datepicker').datetimepicker({
-        //       format: 'DD/MM/YYYY',
-        //       date: new Date(response.data.cinema.releaseDate)
-        //     })
-        //     $('.loader').fadeOut(500)
-        //   },
-        //   function (error) {
-        //     console.log(error)
-        // }
-    })
-
-
+     
 })
 
-
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));

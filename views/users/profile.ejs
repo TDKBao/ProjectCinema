@@ -1,0 +1,36 @@
+<div id="login-container" class="parent ng-scope" ng-controller="profileController">
+    <div class="container">
+        <div class="row">
+            <div id="avatar-form" class="col-md-8 col-md-offset-2 text-center">
+                
+                <img id="user-avatar" width="200px" height="200px" src="/" >
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="create-form-button btn btn-primary" ng-click="addImage()">
+                    <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>
+                <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
+            </div>
+            <div id="user-form" class="col-md-8 col-md-offset-2">
+                
+                <h2 class="text-center"><strong>Thông tin người dùng</strong></h2>
+                <form name="userForm" ng-validate="validationOptions" class="ng-pristine ng-valid ng-isolate-scope" novalidate="novalidate">
+                    <div>                            
+                            <button id="btnAddImage" style="display: none" class="create-form-button btn btn-danger" ng-click="hideInput()">Hủy</button>
+                            <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="showInput()">Sửa</button>
+                            <button style="display: none" id="btnSave" type="submit" class="create-form-button btn btn-primary" ng-click="updateUser()">Lưu</button>
+                        <div class="form-group">
+                            <label for="name">Tên người dùng:</label>
+                            <p class="user-profile ng-binding">{{  }}</p>
+                            <input style="display: none" name="name" ng-model="name" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Nhập tên người dùng">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input style="display: none" name="email" ng-model="email" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="email" placeholder="Email" disabled="">
+                            <p class="user-profile ng-binding">{{   }}</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

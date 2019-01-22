@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="movie">
+   
+<header>
+    <% include ../header.ejs %>
 
+</header>
 <head>
- 
+
   
   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
@@ -20,15 +24,14 @@
   background-image: url("https://staticdelivery.nexusmods.com/images/110/535448-1328651760.jpg");
   background-size: cover
 } */
-    .createMovie{font-weight: bold;color:black}
+    .createMovie{font-weight: bold}
 </style>
 
 <body ng-controller="createController">
   <div>
     <div class="main Main header ">
-        <% include ../header.ejs %>
 
-      <h1 class="tieude" style="text-align:center;margin-bottom: 40px;margin-top: 40px;color:#FF3333;text-transform: uppercase;font-weight: bold">
+      <h1 class="tieude" style="text-align:center;margin-bottom: 40px;margin-top: 40px;color:rgba(77, 165, 236, 0.726);text-transform: uppercase;font-weight: bold">
         Tạo Phim Mới </h1>
     </div>
     <div class="film container">

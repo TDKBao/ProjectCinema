@@ -1,50 +1,70 @@
 var app = angular.module('movie', []);
-app.controller('editController', function ($scope, $http) {
 var movieId = getCookie("movieId");
+var formData = new FormData()
 
 
-$http.post('/api/movie/edit', {movieId:movieId}).then(function(res){
+ 
+app.controller('editController', function ($scope, $http) {
+    $scope.tenNguoiDung = getCookie("tenNguoiDung");
 
-    $scope.tenPhim=res.data.tenPhim;
-    $scope.theLoai=res.data.theLoai;
-    ngayRaMat=res.data.ngayRaMat;
-    $scope.noiDung=res.data.noiDung;
-    $scope.image=res.data.image;
+$scope.suaPhim = function(){
+    var ngayRaMat = $('#datepicker').datepicker("getDate").getTime();
+    formData.append("tenPhim", $scope.tenPhim);
+    formData.append("noiDung", $scope.noiDung);
+    formData.append("theLoai", $scope.TheLoai);
+    formData.append("ngayRaMat", ngayRaMat);
+    formData.append("movieId", movieId);
 
-    $scope.theLoai = [
-        { name: 'Hành Động', value: 'Hành Động' },
-        { name: 'Kinh Dị', value: 'Kinh Dị' },
-        { name: 'Tình Cảm', value: 'Tình Cảm' },
-        { name: 'Gia Đình', value: 'Gia Đình', },
-        { name: 'Viễn Tưởng', value: 'Viễn Tưởng' }
-    ];
-    $scope.TheLoai = $scope.theLoai[0].value;
-})
+    $http.post('/api/movie/edit', formData, {
+        transformRequest: angular.identity,
+        headers: {
+            'Content-Type': undefined
+        }
+    })
+    .then(function (res) {
+        console.log(res)
+        window.alert("Sửa phim thành công")
+        window.location.reload();
+        window.location.href = "/";
+    })
+}
+$scope.logOut = function(){
+   
+    setCookie("tenNguoiDung",'')
+
+}
+
+$scope.theLoai = [
+    { name: 'Hành Động', value: 'Hành Động' },
+    { name: 'Kinh Dị', value: 'Kinh Dị' },
+    { name: 'Tình Cảm', value: 'Tình Cảm' },
+    { name: 'Gia Đình', value: 'Gia Đình', },
+    { name: 'Viễn Tưởng', value: 'Viễn Tưởng' }
+];
+$scope.TheLoai = $scope.theLoai[0].value;
+
 $scope.clickUploadImage = function () {
-        document.getElementById('fileInput').click();
-    };
+    document.getElementById('fileInput').click();
+};
 
 
 });
-var formData = new FormData()
 
 function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#imageUpload').attr('src', e.target.result);
-        }
+    reader.onload = function (e) {
+        $('#imageUpload').attr('src', e.target.result);
+    }
 
-        reader.readAsDataURL(input.files[0]);
-        formData.append("image", input.files[0]);    }
+    reader.readAsDataURL(input.files[0]);
+    formData.append("image", input.files[0]);    }
 }
 
 $("#inputFile").change(function () {
-    readURL(this);
-
-})
-
+readURL(this);
+});
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -59,10 +79,4 @@ function getCookie(cname) {
       }
     }
     return "";
-  }
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
