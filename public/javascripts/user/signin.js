@@ -1,0 +1,42 @@
+var app = angular.module('movie', []);
+
+app.controller('loginController', function ($scope, $http) {
+    $scope.checkLogin = false;
+    $scope.dangNhap = function () {
+
+        if (!$scope.Email) {
+            window.alert('Chưa nhập email !')
+        }
+        else if ($scope.password = '') {
+            window.alert('Chưa nhập password !')
+        }
+        else {
+            var data = {
+                Email: $scope.Email,
+                password: $scope.passWord
+            }
+            $http.post( '/api/user/signin', data).then(function (res) {
+                window.console.log(res)
+                
+                if (res.data === true) {
+                    let email = res.config.data.Email;
+                    setCookie('email',email);
+                    window.location.href = "/"
+                    
+                }
+                else {
+                    window.alert('Sai email hoặc mật khẩu!')
+                }
+            }).catch(function(res){
+                console.log(res)
+            })
+        }
+    }
+
+});
+function setCookie(cname, cvalue) {
+    var d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }

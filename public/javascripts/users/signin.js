@@ -22,13 +22,17 @@ app.controller('loginController', function ($scope, $http) {
         }
         $http.post(window.location.origin + '/api/users/login', data).then(function (res) {
             // console.log(res)
-            
-                window.location.href = "/"
-                let userName = res.data.user.tenNguoiDung
-                setCookie('tenNguoiDung', userName)
+
+                if(res.data.user) {
+                    let userName = res.data.user.tenNguoiDung
+                    setCookie('email',email)
+                    setCookie('tenNguoiDung', userName)
+                } else {
+                    alert('Thông tin đăng nhập không chính xác')
+                }
             }
-        ).catch(function (res) {
-            console.log(res)
+        ).catch(function (error) {
+            alert(error.message)
         })
     };
 

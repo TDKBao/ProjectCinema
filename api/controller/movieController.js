@@ -1,34 +1,58 @@
 const mongoose = require('mongoose');
-const Movie = mongoose.model('Movie');
+const Phim = mongoose.model('Phim');
+
 
 const taoPhim = async function (data) {
-    var movie = new Movie(data);
-    await movie.save();
+    var phim = new Phim(data);
+    await phim.save();
     return {
-        movie: movie
+        phim
     };
+
 }
 
-const layPhim = async function () {
-    var listMovie = await Movie.find()
-    return { listMovie: listMovie }
-}
-
-const getChiTietPhim = async function (id) {
-    var chiTiet = await Movie.findOne({ _id: id });
-    return chiTiet;
-}
-
-const suaPhim = async function (data) {
-    var movie = new Movie(data);
-    await movie.save();
+const layPhim = async function () {//sort ngay ngan nhat
+    var listphim = await Phim.find().sort({"ngayTao":-1});
     return {
-        movie: movie
-    };
+        listphim
+    }
+
 }
+
+const layChiTietPhim = async function (id) {
+    let phim = await Phim.findOne({ _id: id });
+    return {
+        phim
+    }
+}
+const suaPhim= async function(data){
+    var phim = await Phim.findOne({ _id: data.id });
+    phim.tenPhim=data.tenPhim;
+    phim.theLoai=data.theLoai;
+    phim.phatHanh=data.phatHanh;
+    phim.moTa=data.moTa;
+    if(data.hinh){
+    phim.hinh=data.hinh;
+    }
+    await phim.save();
+    return{
+        phim
+    }
+
+}
+const xoaPhim = async function (id) {
+    let phim = await Phim.findOne({ _id: id });
+    phim.remove();
+    return {
+        mess:'Xóa Phim thành công!'
+    }
+}
+
 module.exports = {
-    suaPhim:suaPhim,
     taoPhim: taoPhim,
     layPhim: layPhim,
-    getChiTietPhim: getChiTietPhim
+    layChiTietPhim: layChiTietPhim,
+    suaPhim:suaPhim,
+    xoaPhim:xoaPhim
 }
+

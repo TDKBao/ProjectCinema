@@ -1,51 +1,35 @@
 var app = angular.module('movie', []);
 
-app.controller('listMovieController', function ($scope, $http) {
-    $scope.tenNguoiDung = undefined
-    $scope.isLogin = false
+app.controller('getController', function ($scope, $http) {
+    $scope.tenNguoiDung=getCookie("tenNguoiDung");
+    $http.get('api/movie').then(function (res) {
 
-    $http.get('api/movie/').then(function(res){
-        $scope.listMovie = res.data.dsPhim.listMovie;
-        $scope.user = res.data.user;
-        $scope.checkLogin=res.data.checkLogin;
-        console.log($scope.listMovie);
-        $scope.tenNguoiDung = getCookie("tenNguoiDung")
+    // Bien chua listphim
+       $scope.user = res.data.user;
+      
+       $scope.checkLogin=res.data.checkLogin;
+       $scope.listphim= res.data.listPhimObj.listphim;
+       
+       console.log( $scope.listphim);
         
-        if (!$scope.tenNguoiDung) {
-            $scope.isLogin = false
-        } else {
-            $scope.isLogin = true
-        }
-
-    })
+    //    for( var i=listphim[length-1];i>=0;i--){
+    //    }return listphim;
     
+        console.log(res)
+    })
+
     $scope.logOut = function(){
-        setCookie("tenNguoiDung",'')
+        $http.get('/api/user').then(function (res) {
+            window.alert('Bạn có muốn đăng xuất')
+               setCookie ('Email','')
+               window.location.href="/"
+            })
 
     }
+  
+    
+   
+
+
 
 });
-
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }

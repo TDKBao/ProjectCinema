@@ -1,80 +1,103 @@
 var app = angular.module('movie', []);
-var formData = new FormData()
-
+var formData= new FormData();
 
 app.controller('createController', function ($scope, $http) {
-    function validate() {
-        var error = false
-        if (!$scope.tenPhim) {
-            error = true
-        }
-        return error
-    }
+
+    $scope.tenNguoiDung=getCookie("tenNguoiDung");
+    $scope.checkLogin=true;
+
+var validate = function()
+{
+if (!$scope.tenPhim){
+    window.alert('Vui lòng nhập tên phim')
+ return false
+}
+if(!$scope.moTa){
+    window.alert('Vui lòng nhập mô tả')
+    return false
+}
+return true
+}
+
     $scope.taoPhim = function () {
-
-        var rong = validate()
-        if (!rong) {
-            try {
-                var ngayRaMat = $('#datepicker').datepicker("getDate").getTime();
-                formData.append("tenPhim", $scope.tenPhim);
-                formData.append("noiDung", $scope.noiDung);
-                formData.append("theLoai", $scope.TheLoai);
-                formData.append("ngayRaMat", ngayRaMat);
-                if (formData.get('image')) {
-                    $http({
-                        method: 'POST', url: '/api/movie', headers: {
-                            'Content-Type': undefined
-                        },
-                        data: formData,
-                        headers: { 'Content-Type': undefined }
-                    }).then(function (res) {
-                        console.log(res)
-                        window.alert("Tạo phim thành công")
-                        window.location.reload();
-                        window.location.href = "/";
-                    })
-                }
-                else window.alert("Vui lòng nhập hình ảnh của phim")
-            } catch (error) {
-                console.log(error)
-                res.status(400).send({ errorMessage: error.message })
-
-            }
-
-        }
-        else window.alert("Vui lòng nhập tên phim")
-
+        // thoi gian hien hanh jquery
+        // $scope.tempImage = '../../images/img'
+        if (validate()){
+        var email=getCookie("email");    
+        var ngay = $("#datepicker").datepicker("getDate").getTime();
+        
+        formData.append("tenPhim",$scope.tenPhim);
+        formData.append("moTa",$scope.moTa);
+        formData.append("theLoai",$scope.theLoai);
+        formData.append("phatHanh",ngay);
+        formData.append("nguoiTao",email)
+        
+        $http({
+            method  : 'POST',
+            url     : '/api/movie',
+            data    : formData,
+            headers : { 'Content-Type': undefined } 
+           }).then(function(res){
+                $scope.checkLogin=res.data.checkLogin;
+                window.alert('Tạo phim thành công');
+                window.location.href="/";
+           }).catch(function(res){
+            console.log(res)
+        })
     }
 
-    $scope.theLoai = [
-        { name: 'Hành Động', value: 'Hành Động' },
-        { name: 'Kinh Dị', value: 'Kinh Dị' },
-        { name: 'Tình Cảm', value: 'Tình Cảm' },
-        { name: 'Gia Đình', value: 'Gia Đình', },
-        { name: 'Viễn Tưởng', value: 'Viễn Tưởng' }
-    ];
-    $scope.TheLoai = $scope.theLoai[0].value;
-    $scope.clickUploadImage = function () {
-        document.getElementById('fileInput').click();
-    };
+      
+        // var data = {
+        //     tenPhim: $scope.tenPhim,
+        //     moTa: $scope.mota,
+        //     theLoai:$scope.theloai,
+        //     phatHanh:ngay
+        // }
+       
+        
+        // $http.post('/api/movie', data).then(function (res) {
+        //     //gui note thong bao
+        //     window.alert('Tạo phim thành công');
+        //     window.location.href="/"
+        //     console.log(res)
+        // })
+    }
+    //option
+    $scope.movieType = ['Hanh dong', 'Tinh cam']
+    $scope.thename = [
+        {name:'Hành Động',value:'Hành Động'},
+        {name:'Tình Cảm',value:'Tình Cảm'},
+        {name:'Hài',value:'Hài'},
+        {name:'Kinh Dị',value:'Kinh Dị'},
+        {name:'Hoạt Hình',value:'Hoạt Hình'}
+    ]
+$scope.theLoai= $scope.thename[0].value;
 
+$scope.chooseImage=function(){
+    
+    document.getElementById("fileInput").click()
+}
+$scope.logOut = function(){
+    $http.get('/api/user').then(function (res) {
 
+           var mess= res.data.mess;
+           window.location.href="/"
+        })
+
+}
 });
 
 function readURL(input) {
-    if (input.files && input.files[0]) {
+    if (input.files  && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#imageUpload').attr('src', e.target.result);
-        }
+            $('#img')
+                .attr('src', e.target.result);
+        };
 
         reader.readAsDataURL(input.files[0]);
-        formData.append("image", input.files[0]);
+       
+             formData.append("hinh",input.files[0]); 
     }
 }
-
-$("#inputFile").change(function () {
-    readURL(this);
-});
-

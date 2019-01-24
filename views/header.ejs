@@ -1,44 +1,69 @@
-<!DOCTYPE html>
-<html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+   <script src="/javascripts/common.js"></script>
 
 <style>
+   
 </style>
 
 <body>
-    <title>Star Cinema</title>
+        <title>Star Cinema</title>
     <div style="padding-left: 30px;padding-top: 20px;padding-bottom: 30px;background-image: url(images/header.jpg)">
         <h1 class="customcolor" style="font-family: fantasy;">Star Cinema </h1>
     </div>
-    <div class="padding" style="background-image: url(/images/nvbar.jpg)">
+   
+    <div class="padding" style="background-image: url(/images/header.jpg)">
+        
         <nav class="navbar navbar-expand-lg">
+            
             <a class="navbar-brand customcolor" href="/">
-                <i class="fa fa-home " aria-hidden="true" style="font-size: 40px"></i>
+                <i class="fa fa-home " aria-hidden="true" style="font-size: 40px"></i> 
+               
+                <i>
+                        <a href="../" style="text-decoration: none;float:left;font-size:35px;margin-left: 10px;margin-top:5px;;font-family: 'Righteous', cursive;">
+                            </a>
+                                <input style="float: left;height: 40px;font-size: 20px;width: 250px;"type="text" 
+                                class="form-control"  id="clickfilter" placeholder="Nhập tên phim" ng-model="tenPhim">
+                                <i style="margin-left: 10px;float: left;color:white;font-size:35px" class="fas fa-search"></i>
+                                <!-- <select id="theLoai"class="form-control"style="float:left;height: 40px;font-size: 20px; margin-left: 20px;width: 150px;" >
+                                    <option>Hành Động</option>
+                                    <option>Tình Cảm</option>
+                                    <option>Hài</option>
+                                    <option>Kinh Dị</option>
+                                    <option>Hoạt Hình</option>
+                                </select>  -->
+                                 
+                    </i> </i> 
             </a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
 
-                <ul class="navbar-nav" style="margin-left:auto" ng-show="tenNguoiDung">
+                <ul class="navbar-nav" style="margin-left:auto" ng-show="checkLogin">
                     <li class="navbar-nav" style="margin-left:auto ">
-                        <a href="/users/profile" class="customcolor textbold" style="margin-right:20px">
-                            <i class="fas fa-user"></i> {{tenNguoiDung}}</a>
+                        <a href="/user/profile" class="customcolor textbold" style="margin-right:20px">
+                            <i class="fas fa-user"></i> {{user.tenNguoiDung}}</a>
                     </li>
-                    <li class="navbar-nav" style="margin-left:auto ">
+                    <li class="navbar-nav" style="margin-left:auto " ng-show="checkLogin">
                         <a class="customcolor textbold" href="/movie/create">Tạo phim</a>
                     </li>
-                    <li> <a href="../"><i ng-click="logOut()" style="font-size: 30px; margin-left:20px;color:white" class="fas fa-power-off "></i>
+                    <li> 
+                        <a href="../"><i ng-click="logOut()" ng-show="checkLogin"style="margin-top: 10px;font-size: 30px; margin-left:20px;color:white" class="fas fa-power-off "></i>
                     </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav" style="margin-left:auto " ng-show="!tenNguoiDung">
+                <ul class="navbar-nav" style="margin-left:auto "ng-show="!checkLogin">
                     <li class="nav-items ">
-                        <a class="customcolor textbold " href="/users/signup">Đăng ký</a>
+                        <a class="customcolor textbold " href="/user/signup">Đăng ký</a>
                     </li>
 
                     <li class="nav-items" style="margin-left:20px">
-                        <a class="customcolor textbold " href="/users/signin">Đăng nhập</a>
+                        <a class="customcolor textbold " href="/user/signin">Đăng nhập</a>
                     </li>
                 </ul>
 
@@ -49,4 +74,4 @@
     </div>
 </body>
 
-</html>
+

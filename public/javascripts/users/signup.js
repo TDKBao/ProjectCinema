@@ -1,5 +1,5 @@
+
 var app = angular.module('users', []);
-var   NON_EMPTY_CLASS = 'ng-empty';
 app.controller('usersController', function ($scope, $http) {
     function checkLogin()
     {
@@ -25,8 +25,10 @@ app.controller('usersController', function ($scope, $http) {
             window.alert("Tạo tài khoản thành công")
             window.location.reload();
             window.location.href="/";
-            let userName = res.data.userDangKy.user.tenNguoiDung
-
+            let userName = res.data.userDangKy.tenNguoiDung
+            let userName = res.data.userDangKy.email
+            setCookie('email',email)
+            // window.alert(res.data.errorMessage);
              setCookie('tenNguoiDung', userName)
            
         })}

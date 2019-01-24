@@ -1,5 +1,4 @@
 var express = require('express');
-var session = require('express-session')
 var router = express.Router();
 var userController = require('../controller/usersController');
 var jwt = require('jsonwebtoken');
@@ -25,11 +24,10 @@ router.post('/login', async function (req, res) {
     try {
         var user = await userController.checkLogin(req.body);
         res.send({
-            user: user
+            user:user
         })
     } catch (error) {
-        console.log(error)
-        
+        return res.send(error)
     }
 
 router.get('/profile',async function(req,res){

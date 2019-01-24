@@ -1,5 +1,9 @@
-body {
+.body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.btn-primary {
+  background-image: url(/images/header.jpg);
+  background-color: currentColor
 }
 .btn.btn-primary:hover{
   background-image: url(/images/footer.jpg) !important;
@@ -36,6 +40,7 @@ body {
   margin-bottom: 34px;
 }
 a {
+  text-decoration-skip: unset;
   color: #FF0000;
 }
 
