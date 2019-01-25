@@ -7,7 +7,7 @@ var MovieSchema = new Schema(
         phatHanh: { type: Number },
         moTa: { type: String },
         hinh:{type:String,default:'logo.jpg'},
-        ngayTao:{type: Number, default: Date.now()},
+        ngayTao:{type: Number},
         nguoiTao:{type:String}
         
         

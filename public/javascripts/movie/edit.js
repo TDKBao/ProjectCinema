@@ -15,6 +15,7 @@ app.controller('editController', function ($scope, $http) {
 
 
     $http.post("/api/movie/detail", data).then(function (res) {
+        // var phatHanh = $("#datepicker").datepicker({ dateFormat: 'dd,MM,yyyy' }).val()
         $scope.tenPhim = res.data.phim.phim.tenPhim;
         $scope.theLoai = res.data.phim.phim.theLoai;
         $scope.phatHanh = res.data.phim.phim.phatHanh;
@@ -26,11 +27,11 @@ app.controller('editController', function ($scope, $http) {
         $scope.thename = [
             { name: 'Hành Động', value: 'Hành Động' },
             { name: 'Tình Cảm', value: 'Tình Cảm' },
-            { name: 'Hài', value: 'Hài' },
+            { name: 'Gia Đình', value: 'Gia Đình' },
             { name: 'Kinh Dị', value: 'Kinh Dị' },
             { name: 'Hoạt Hình', value: 'Hoạt Hình' }
         ]
-        $scope.theloai = $scope.thename[0].value;
+        $scope.theLoai = $scope.thename[0].value;
 
         //     $http.put("/api/movie/detail",id).then(function(res){
         //         $scope.tenPhim=res.data.phim.phim.tenPhim;
@@ -48,14 +49,14 @@ app.controller('editController', function ($scope, $http) {
 
 
         $scope.suaPhim = function () {
-
+            var ngayTao =Date.now();
             var ngay = $("#datepicker").datepicker("getDate").getTime();
             formData.append("tenPhim", $scope.tenPhim);
             formData.append("moTa", $scope.moTa);
             formData.append("theLoai", $scope.theLoai);
             formData.append("phatHanh", ngay);
             formData.append("id",id);
-
+            formData.append("ngayTao",ngayTao)
             $http({
                 method: 'PUT',
                 url: '/api/movie',
@@ -82,8 +83,8 @@ app.controller('editController', function ($scope, $http) {
     $scope.logOut = function(){
         $http.get('/api/user').then(function (res) {
 
-               var mess= res.data.mess;
-               window.location.href="/"
+            // window.alert('Bạn có muốn đăng xuất')
+            window.location.href="/"
             })
 
     }

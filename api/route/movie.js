@@ -129,7 +129,7 @@ router.put('/', fileUpload(), async function (req, res) {
     }
 
 });
-router.post('/xoadetail', async function (req, res) {
+router.post('/:id', async function (req, res) {
     try {
         var phim = await movieController.xoaPhim(req.body.id);
         var checkLogin = false;
@@ -141,7 +141,6 @@ router.post('/xoadetail', async function (req, res) {
         }
 
         res.send({
-
             checkLogin: checkLogin,
             user: user
         })

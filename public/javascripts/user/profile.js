@@ -28,8 +28,8 @@ app.controller('profileController', function ($scope, $http) {
     $scope.logOut = function(){
         $http.get('/api/user').then(function (res) {
 
-               var mess= res.data.mess;
-               window.location.href="/"
+            // window.alert('Bạn có muốn đăng xuất')
+            window.location.href="/"
             })
 
     }

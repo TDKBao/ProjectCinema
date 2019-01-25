@@ -66,9 +66,13 @@ const editProfile = async function (data) {
 
 }
 
-
+// const logOut = async function (data) {
+//     let user = await User.findOne({ Email: data.Email });
+    
+// }
 
 module.exports = {
+    // logOut:logOut,
     taoUser: taoUser,
     getUserByEmail: getUserByEmail,
     checkLogin: checkLogin,

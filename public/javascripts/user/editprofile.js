@@ -9,14 +9,7 @@ app.controller('editprofileController', function ($scope, $http) {
         $scope.tenNguoiDung = res.data.userInfomation.tenNguoiDung;
         $scope.Email = res.data.userInfomation.Email;
         $scope.hinh =res.data.userInfomation.hinh;
-        // $scope.checkImage=function(){
-        //     if(!res.data.hinh){
-        //         return true;
-        //     }else{
-        //         return false;
-        //     }
-             
-        //  }
+    
              
     });
 
@@ -47,8 +40,8 @@ app.controller('editprofileController', function ($scope, $http) {
     $scope.logOut = function(){
         $http.get('/api/user').then(function (res) {
 
-               var mess= res.data.mess;
-               window.location.href="/"
+            // window.alert('Bạn có muốn đăng xuất')
+            window.location.href="/"
             })
 
     }

@@ -29,20 +29,13 @@ app.controller('detailController', function ($scope, $http) {
          }
          
         }
-
-        
-         
-
-         
-
-       
     }).catch(function(res){
         console.log(res)
     })
   
    
     $scope.xoaPhim= function(){
-        $http.post("/api/movie/xoadetail", data).then(function(res){
+        $http.post("/api/movie/:id", data).then(function(res){
             $scope.checkLogin=res.data.checkLogin;
             window.alert('Xóa phim thành công!');
             window.location.href="/";
@@ -57,7 +50,8 @@ app.controller('detailController', function ($scope, $http) {
     $scope.logOut = function(){
         $http.get('/api/user').then(function (res) {
 
-               
+            // window.alert('Bạn có muốn đăng xuất')
+
                window.location.href="/"
             })
 

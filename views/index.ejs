@@ -2,6 +2,8 @@
 <html ng-app="movie" ng-controller="getController">
 
 <head>
+    <link rel="icon" href="/images/logo.jpg" type="image/x-icon" />
+
   <title>
     <%= title %>
   </title>
@@ -53,7 +55,7 @@
       <div ng-repeat="phim in listphim | filter:{tenPhim:tenPhim} " class="col-md-3" >
         
         <a href="/{{phim._id}}" style="text-decoration:null;color: black;">
-          <img src="images/{{phim.hinh}}" class="img-fluid" 
+          <img id="image"src="images/{{phim.hinh}}" class="img-fluid" 
             style="height: 350px; width:500px;object-fit: cover;">
           <div><label style="margin-top:20px " for="exampleInputName"><b style="font-size: 50px"> {{phim.tenPhim}}</b></label></div>
           <div><label for="exampleInputName" style="font-size: 30px"><b>Thể loại: {{phim.theLoai}}</b></label></div>

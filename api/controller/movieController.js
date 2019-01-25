@@ -48,6 +48,7 @@ const xoaPhim = async function (id) {
     }
 }
 
+
 module.exports = {
     taoPhim: taoPhim,
     layPhim: layPhim,

@@ -20,16 +20,10 @@ app.controller('getController', function ($scope, $http) {
 
     $scope.logOut = function(){
         $http.get('/api/user').then(function (res) {
-            window.alert('Bạn có muốn đăng xuất')
                setCookie ('Email','')
                window.location.href="/"
             })
 
     }
-  
-    
-   
-
-
 
 });
