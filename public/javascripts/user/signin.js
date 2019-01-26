@@ -15,7 +15,7 @@ app.controller('loginController', function ($scope, $http) {
                 Email: $scope.Email,
                 password: $scope.passWord
             }
-            $http.post( '/api/user/signin', data).then(function (res) {
+            $http.post( '/api/user/sign-in', data).then(function (res) {
                 window.console.log(res)
                 
                 if (res.data === true) {

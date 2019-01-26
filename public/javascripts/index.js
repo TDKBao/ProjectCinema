@@ -1,26 +1,21 @@
 var app = angular.module('movie', []);
 
 app.controller('getController', function ($scope, $http) {
-    $scope.tenNguoiDung=getCookie("tenNguoiDung");
     $http.get('api/movie').then(function (res) {
 
     // Bien chua listphim
        $scope.user = res.data.user;
-      
        $scope.checkLogin=res.data.checkLogin;
        $scope.listphim= res.data.listPhimObj.listphim;
        
-       console.log( $scope.listphim);
-        
-    //    for( var i=listphim[length-1];i>=0;i--){
-    //    }return listphim;
-    
+    //    console.log( $scope.listphim);
+
         console.log(res)
     })
 
     $scope.logOut = function(){
-        $http.get('/api/user').then(function (res) {
-               setCookie ('Email','')
+        $http.get('/api/user/sign-out').then(function (res) {
+               setCookie ('email','')
                window.location.href="/"
             })
 

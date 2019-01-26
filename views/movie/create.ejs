@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <link rel="shortcut icon" type="image/jpg" href="../public/images/icon.jpg"/>
    
 </head>
@@ -78,13 +78,13 @@
             <form>
                 <div class="form-group">
                     <label style="font-size:20px;margin-top: 10px"for="exampleInputName"><b>Tên phim</b></label>
-                    <input style="height: 50px;font-size: 20px"type="text" class="form-control" id="exampleInputname" placeholder="Nhập tên phim" ng-model="tenPhim">
+                    <input id="nhapTenPhim"style="height: 50px;font-size: 20px"type="text" class="form-control" id="exampleInputname" placeholder="Nhập tên phim" ng-model="tenPhim">
                 </div>
 
 
                 <div class="form-group">
                     <label style="font-size:20px;" for="exampleFormControlSelect1"><b>Thể loại phim</b></label>
-                    <select style="height: 50px;font-size: 20px" class="form-control" id="exampleFormControlSelect1" ng-model="theLoai" ng-options="option.value as option.name for option in thename" >
+                    <select id="theLoai"style="height: 50px;font-size: 20px" class="form-control" id="exampleFormControlSelect1" ng-model="theLoai" ng-options="option.value as option.name for option in thename" >
                         <!-- <option>Hành Động</option>
                         <option>Tình Cảm</option>
                         <option>Hài</option>

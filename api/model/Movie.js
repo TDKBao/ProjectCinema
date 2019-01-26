@@ -6,11 +6,11 @@ var MovieSchema = new Schema(
         theLoai: { type: String },
         phatHanh: { type: Number },
         moTa: { type: String },
-        hinh:{type:String,default:'logo.jpg'},
-        ngayTao:{type: Number},
-        nguoiTao:{type:String}
-        
-        
+        hinh: { type: String, default: 'logo.jpg' },
+        ngayTao: { type: Number },
+        nguoiTao: { type: String }
+
+
 
     }
 );

@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jQuery UI Datepicker - Default functionality</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     
 </head>
 
@@ -64,10 +64,10 @@
     <p id="id" ng-show="false"><%= id %></p>
     <div class="container-fluid">
         <div class="main-header">
-            <h1><b style="font-size: 50px">{{thongtinphim.phim.tenPhim}}</b></h1>
+            <h1><b id="tenPhim"style="font-size: 50px">{{thongtinphim.phim.tenPhim}}</b></h1>
         </div>
 
-        <div class="row"   style= "width: 80%;margin-left: 150px;">
+        <div id="detail" class="row"   style= "width: 80%;margin-left: 150px;">
             
             <div class="col-md-5">
                 <from>
@@ -80,24 +80,24 @@
             <form>
                
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1"><b style="font-size:30px">Thể loại phim: </b><b  style="font-size:30px">{{thongtinphim.phim.theLoai}}</b></label>
+                    <label id="theLoai"for="exampleFormControlSelect1"><b style="font-size:30px">Thể loại phim: </b><b  style="font-size:30px">{{thongtinphim.phim.theLoai}}</b></label>
                 </div>
                 <div class="form-group date">
                         <span ng-non-bindable></span><b style="font-size:30px;margin-top:50px" >Khởi Chiếu: </b><span><b  style="font-size:30px">{{thongtinphim.phim.phatHanh | date:'dd/MM/yyyy'}}</b></span><br>
                 </div>
                     <div class="form-group">
-                        <label  for="exampleFormControlTextarea1"><b style="font-size:30px">Mô tả: </b><b  style="font-size:30px">{{thongtinphim.phim.moTa}} </b></label>
+                        <label id="moTa" for="exampleFormControlTextarea1"><b style="font-size:30px">Mô tả: </b><b  style="font-size:30px">{{thongtinphim.phim.moTa}} </b></label>
                     </div>
                     <div class="form-group">
                         <label  for="exampleFormControlTextarea1"><b style="font-size:30px">Người tạo: </b><b  style="font-size:30px">{{thongtinphim.phim.nguoiTao}} </b></label>
                     </div>
                     <div ng-show="checkuser()">
                             <a style=" text-decoration: none;color:white;" href="/edit/{{id}}"> <button   style="  background-image: url(/images/header.jpg); padding: 15px; margin-left: 50%; width: 30%;  color: white;padding: 10px;margin-left: 90%;position:absolute;bottom: 35px;height: 55px;font-size: 20px" type="button">Sửa</button></a>
-                        <button   data-toggle="modal" data-target="#exampleModal1"style="  padding: 15px; margin-left: 50%; width: 30%; background-image: url(/images/header.jpg);color: white;padding: 10px;margin-left: 0;position:absolute;bottom: 35px;height: 55px;font-size: 20px" type="button" >Xóa</button>
+                        <button   data-toggle="modal" data-target="#exampleModal2"style="  padding: 15px; margin-left: 50%; width: 30%; background-image: url(/images/header.jpg);color: white;padding: 10px;margin-left: 0;position:absolute;bottom: 35px;height: 55px;font-size: 20px" type="button" >Xóa</button>
                             
                     </div>
                      <!-- Modal -->
-                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

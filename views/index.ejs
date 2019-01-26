@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Datepicker - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
  
 
 </head>
@@ -26,11 +26,12 @@
     border-style: solid;
 
     padding: 20px;
-    margin-left:5%;
+    margin-left:6%;
 
   }
 
   .tieude {
+    margin-top: 20px;
     font-size: 50px;
     text-align: center;
 
@@ -50,12 +51,12 @@
   <div class="tieude"><b>Danh Sách Phim Mới</b></div>
   <div class="container-fluid">
 
-    <div class="row">
+    <div id="index"class="row">
 
-      <div ng-repeat="phim in listphim | filter:{tenPhim:tenPhim} " class="col-md-3" >
+      <div ng-repeat="phim in listphim | filter:{tenPhim:tenPhim} " class="col-md-3 movie" >
         
         <a href="/{{phim._id}}" style="text-decoration:null;color: black;">
-          <img id="image"src="images/{{phim.hinh}}" class="img-fluid" 
+          <img id="image"ng-src="images/logo.jpg"src="images/{{phim.hinh}}" class="img-fluid" 
             style="height: 350px; width:500px;object-fit: cover;">
           <div><label style="margin-top:20px " for="exampleInputName"><b style="font-size: 50px"> {{phim.tenPhim}}</b></label></div>
           <div><label for="exampleInputName" style="font-size: 30px"><b>Thể loại: {{phim.theLoai}}</b></label></div>

@@ -3,19 +3,15 @@ var app = angular.module('movie', []);
 var formData= new FormData();
 app.controller('editController', function ($scope, $http) {
     var id = $('#id').text();
-    // $scope.id=res.data._id;
-    // $scope.clickUpLoadFilm= function(){
-    //     setCookie("movieId",id);
-    //     window.location.href=$scope.id +'/edit'
-    // }
-    $scope.tenNguoiDung=getCookie("tenNguoiDung");
+    $scope.id=id;
+    var email = getCookie("email");
     var data = {
-        id: id
+        email
     }
 
 
-    $http.post("/api/movie/detail", data).then(function (res) {
-        // var phatHanh = $("#datepicker").datepicker({ dateFormat: 'dd,MM,yyyy' }).val()
+    $http.get("/api/movie/" +id, data).then(function (res) {
+        $scope.phatHanh = $("#datepicker").datepicker({ dateFormat: 'dd,MM,yyyy' }).val()
         $scope.tenPhim = res.data.phim.phim.tenPhim;
         $scope.theLoai = res.data.phim.phim.theLoai;
         $scope.phatHanh = res.data.phim.phim.phatHanh;
@@ -32,21 +28,6 @@ app.controller('editController', function ($scope, $http) {
             { name: 'Hoạt Hình', value: 'Hoạt Hình' }
         ]
         $scope.theLoai = $scope.thename[0].value;
-
-        //     $http.put("/api/movie/detail",id).then(function(res){
-        //         $scope.tenPhim=res.data.phim.phim.tenPhim;
-        //         $scope.theLoai=res.data.phim.phim.theLoai;
-        //         $scope.phatHanh=res.data.phim.phim.phatHanh;
-        //         $scope.moTa=res.data.phim.phim.moTa;
-        //         $scope.hinh=res.data.phim.phim.hinh;
-        //         $scope.checkLogin=res.data.checkLogin;
-
-        //     })
-
-        //     }).catch(function(res){
-        //         console.log(res)
-        //     })
-
 
         $scope.suaPhim = function () {
             var ngayTao =Date.now();
@@ -81,9 +62,9 @@ app.controller('editController', function ($scope, $http) {
 
 
     $scope.logOut = function(){
-        $http.get('/api/user').then(function (res) {
+        $http.get('/api/user/sign-out').then(function (res) {
 
-            // window.alert('Bạn có muốn đăng xuất')
+               setCookie ('email','')
             window.location.href="/"
             })
 

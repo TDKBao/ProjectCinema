@@ -11,7 +11,6 @@ router.get('/movie/create', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
-
   res.render('movie/detail', { id:id });
 });
 

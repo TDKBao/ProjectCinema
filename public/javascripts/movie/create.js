@@ -2,10 +2,9 @@ var app = angular.module('movie', []);
 var formData = new FormData();
 
 app.controller('createController', function ($scope, $http) {
-
     // $scope.tenNguoiDung = getCookie("tenNguoiDung");
     $scope.checkLogin = true;
-
+    
     var validate = function () {
         if (!$scope.tenPhim) {
             window.alert('Vui lòng nhập tên phim')
@@ -38,29 +37,12 @@ app.controller('createController', function ($scope, $http) {
                 data: formData,
                 headers: { 'Content-Type': undefined }
             }).then(function (res) {
-                $scope.checkLogin = res.data.checkLogin;
                 window.alert('Tạo phim thành công');
                 window.location.href = "/";
             }).catch(function (res) {
                 console.log(res)
             })
         }
-
-
-        // var data = {
-        //     tenPhim: $scope.tenPhim,
-        //     moTa: $scope.mota,
-        //     theLoai:$scope.theloai,
-        //     phatHanh:ngay
-        // }
-
-
-        // $http.post('/api/movie', data).then(function (res) {
-        //     //gui note thong bao
-        //     window.alert('Tạo phim thành công');
-        //     window.location.href="/"
-        //     console.log(res)
-        // })
     }
     //option
     $scope.movieType = ['Hanh dong', 'Tinh cam']
@@ -77,8 +59,8 @@ app.controller('createController', function ($scope, $http) {
         document.getElementById("fileInput").click()
     }
     $scope.logOut = function () {
-        $http.get('/api/user').then(function (res) {
-            // window.alert('Bạn có muốn đăng xuất')
+        $http.get('/api/user/sign-out').then(function (res) {
+            setCookie('email', '')
             window.location.href = "/"
         })
 
