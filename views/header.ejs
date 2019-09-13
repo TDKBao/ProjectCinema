@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+<script src="/javascripts/common.js"></script>
+
+<style>
+
+</style>
+
+<body>
+    <title>Star Cinema</title>
+    <div style="padding-left: 30px;padding-top: 20px;padding-bottom: 30px;background-image: url(http://localhost:3000/images/header.jpg)">
+        <h1 class="customcolor" style="font-family: fantasy;">Star Cinema </h1>
+    </div>
+
+    <div class="padding" style="background-image: url(http://localhost:3000/images/header.jpg)">
+
+        <nav class="navbar navbar-expand-lg">
+
+            <a class="navbar-brand customcolor" href="/">
+                <i class="fa fa-home " aria-hidden="true" style="font-size: 40px"></i>
+
+                <i>
+                    <a href="../" style="text-decoration: none;float:left;font-size:35px;margin-left: 10px;margin-top:5px;;font-family: 'Righteous', cursive;">
+                    </a>
+                    <input style="float: left;height: 40px;font-size: 20px;width: 250px;" type="text" class="form-control"
+                        id="clickfilter" placeholder="Nhập tên phim" ng-model="tenPhim">
+                    <i style="margin-left: 10px;float: left;color:white;font-size:35px" class="fas fa-search"></i>
+
+                </i> </i>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav" style="margin-left:auto" ng-show="checkLogin">
+                    <li class="navbar-nav" style="margin-left:auto ">
+                        <a id="user"href="/user/profile" class="customcolor textbold " style="margin-right:20px">
+                            <i class="fas fa-user"></i> {{tenNguoiDung}}</a>
+                    </li>
+                    <li class="navbar-nav" style="margin-left:auto " ng-show="checkLogin">
+                        <a id="btnTaoPhim" class="customcolor textbold uppercase" href="/movie/create">Tạo phim</a>
+                    </li>
+                    
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn chắc chắn muốn đăng xuất ? 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở về</button>
+                                    <button id="acceptLogOut"ng-click="logOut()"type="button" class="btn btn-primary">Tiếp tục</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <li>
+                    <a data-toggle="modal" data-target="#exampleModal1" id="logOut" href="../"><i ng-show="checkLogin"style="margin-top: 10px;font-size: 30px; margin-left:20px;color:white" class="fas fa-power-off "></i>
+
+                    <!-- <button   data-toggle="modal" data-target="#exampleModal1" type="button" ></button> -->
+                </li>
+                    
+                    <!-- <li> 
+                        <a id="logOut" href="../"><i ng-click="logOut()" ng-show="checkLogin"style="margin-top: 10px;font-size: 30px; margin-left:20px;color:white" class="fas fa-power-off "></i>
+                    </a>
+                    </li> -->
+                </ul>
+                <ul class="navbar-nav" style="margin-left:auto " ng-show="!checkLogin">
+                    <li class="nav-items ">
+                        <a id="dangKy" class="customcolor textbold uppercase" href="/user/signup">Đăng ký</a>
+                    </li>
+
+                    <li class="nav-items" style="margin-left:20px">
+                        <a id="dangNhap" class="customcolor textbold uppercase" href="/user/signin">Đăng nhập</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+    </div>
+    </div>
+</body>

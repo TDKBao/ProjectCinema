@@ -1,8 +1,108 @@
-body {
-  padding: 50px;
+.body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: #00B7FF;
+.btn-primary {
+  background-image: url(/images/header.jpg);
+  background-color: currentColor
 }
+.btn.btn-primary:hover{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary:active{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary:focus{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:hover{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:active{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-danger:focus{
+  background-image: url(/images/footer.jpg) !important;
+}
+.btn.btn-primary{  
+  background-image: url(/images/header.jpg);
+  color: white;
+}
+.create-form-button{
+  width: 150px;
+  height: 50px;
+  font-size: 20px !important;
+  font-weight: 100;  
+}
+.btn-login{
+  margin-right: 15px !important;
+}
+.parent{
+  margin-bottom: 34px;
+}
+a {
+  text-decoration-skip: unset;
+  color: #FF0000;
+}
+
+.hide {
+  display: none;
+}
+.padding{
+  width: 100%;
+  padding-left: 10px;
+    padding-right: 20px;
+}
+.customcolor{
+  color:white
+  
+}
+.uppercase{
+  text-transform: uppercase;
+
+}
+.textbold{
+  font-size: 30px;
+    font-weight: bold;
+}
+.my-text-bold{
+  font-size: 20px;
+  font-weight: bold;
+}
+.title-center{
+  margin-top: 20px;
+  text-align: center
+}
+.sizeicon{
+  width: 30px;
+  height: 30px;
+}
+.sizefont{
+  size: 30px
+}
+.sizefont50{
+  size :50px
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+/* .custom-file-input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+} */

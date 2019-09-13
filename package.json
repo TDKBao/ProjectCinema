@@ -1,5 +1,5 @@
 {
-  "name": "projectcinema",
+  "name": "cinema",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,23 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "express-fileupload": "^1.1.1-alpha.1",
+    "express-session": "^1.15.6",
+    "generate-password": "^1.4.1",
+    "http-errors": "^1.6.3",
+    "jsonwebtoken": "^8.4.0",
+    "method-override": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.0",
+    "morgan": "~1.9.0",
+    "node-mailer": "^0.1.1",
+    "nodemailer": "^5.1.1",
+    "nodemailer-direct-transport": "^3.3.2",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local-mongoose-email": "^0.1.4",
+    "smtp-server": "^3.5.0"
   }
 }

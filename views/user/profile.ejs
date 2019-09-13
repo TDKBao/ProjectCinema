@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html ng-app="movie">
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="icon" href="/images/logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+</head>
+
+<style>
+  
+    .main-header {
+        text-align: center;
+        font-size: 36px;
+        text-transform: uppercase;
+        margin-top: 30px;
+        margin-left:20%
+    }
+
+  
+
+    .btn {
+        color: white;
+        padding: 15px;
+        width: 30%;
+
+    }
+
+    
+    footer{
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    margin-left: 0;
+}
+.row{
+    border: solid;
+    height: auto;
+    margin-top: 50px;
+  
+
+    
+    
+}
+
+
+
+</style>
+
+<body ng-controller="profileController">
+    <% include ../header.ejs %>
+
+    <div class="container-fluid">
+       
+
+        <class="row">
+            <div class="col-md-12">
+                 
+                    </div>
+                    <div id="profilePage"class="row" style="  margin-left: 15%; margin-right: 15%;">
+                        <div class="main-header">
+                            <h1><b>Thông tin người dùng</b></h1>
+                        </div>
+                        <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+                            <from>
+                                <div class="form-group"style="margin-top: 20px">
+                                    <img style="object-fit: cover;height:350px;width: 350px"src="../../../images/{{userinfomation.hinh}}" class="img-fluid" alt="Responsive image">
+                                    <!-- <img style="object-fit: cover;height:350px;width: 350px"src="../../../images/img.jpg" class="img-fluid" alt="Responsive image"> -->
+                                    <button ng-show="false" ng-click="chooseImage()" style="background-image: url(/images/header.jpg);color: white;padding: 10px;margin-left:30%;margin-top:30px;height: 55px;font-size: 20px" type="button" class="btnanh btn ">Tải ảnh lên</button>
+
+                            </from>
+                        </div>
+                    </div>
+                    <div class="col-md-5" style="margin-top: 20px">
+                        <form>
+                           
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1"><b style="font-size:20px">Tên người dùng: </b><p  ng-model="tenNguoiDung" style="font-size:25px">{{userinfomation.tenNguoiDung}}</p></label>
+                            </div>
+                            <div class="form-group date">
+                                    <span ></span><b style="font-size:20px;margin-top:50px" >Email: </b><span><p ng-model="email" style="font-size:25px">{{userinfomation.Email}}</p></span><br>
+                            </div>
+                            </form>
+                            
+                            <a style="color: white;"href="/user/editprofile">  <button style="background-image: url(/images/header.jpg);color: white;padding: 10px;margin-left: 80%;position:absolute;bottom: 35px;height: 55px;font-size: 20px" type="button" class="btnanh btn ">Sửa</button></a>
+
+                           
+                            <p data-placement="top" data-toggle="tooltip" title="Edit" data-original-title="Edit">
+                                <button  style="background-image: url(/images/header.jpg);color: white;height: 55px;font-size: 20px;position: absolute;
+                                bottom: 35px;" class="btn btn" data-title="Edit" data-toggle="modal" data-target="#edit" data-backdrop="static" data-keyboard="false">
+                                    <span class="glyphicon glyphicon-pencil"> Đổi password</span>
+                                </button>
+                            </p>
+                            
+                            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                            
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                           
+                                        </div>
+                                        <!--/.modal-header-->
+                            
+                                        <div class="modal-body" >
+                                            <form method="post" id="updateForm" >
+                                               
+                                              
+                                                <h4><u><strong>Đổi Mật khẩu</strong></u></h4>
+                                                <div class="form-group" id="currentPass-group">
+                                                    <label for="current_pass">Mật khẩu hiện tại :</label>
+                                                    <input ng-model="oldPassword"class="form-control" type="password" name="current_pass" id="current_pass">
+                                                </div>
+                            
+                                                <div class="form-group">
+                                                    <label for="new_pass">Mật khẩu mới :</label>
+                                                    <input ng-model="newPassword" class="form-control" type="password" name="new_pass" id="new_pass">
+                                                </div>
+                            
+                                                <div class="form-group">
+                                                    <label for="confirm_pass">Xác nhận lại mật khẩu :</label>
+                                                    <input ng-model="confirmPassword" class="form-control" type="password" name="confirm_pass" id="confirm_pass">
+                                                </div>
+                            
+                                                <div class="modal-footer">
+                                                    <!-- <input type="submit" name="submit" class="btn btn-block btn-warning" value="Save changes" /> -->
+                                                    <button style="background-image: url(/images/header.jpg);color: white" ng-click="changePassword()" name="submit" class="btn btn">Lưu thay đổi</button>
+                                                    <button style="background-color: gray;color: white"type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+
+                    </div>
+
+                   
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <% include ../footer.ejs %>
+    </footer>
+
+
+       
+
+
+</body>
+<script src="stylesheet" href="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="/javascripts/common.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+        $("#datepicker").datepicker("setDate", new Date());
+    });
+</script>
+
+<script src="/javascripts/user/profile.js"></script>
+
+
+

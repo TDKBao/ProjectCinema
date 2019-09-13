@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html ng-app="movie" ng-controller="getController">
+
+<head>
+    <link rel="icon" href="/images/logo.jpg" type="image/x-icon" />
+
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+ 
+
+</head>
+<style>
+
+  
+
+  .col-md-3 {
+    margin-top: 30px;
+    font-size: 20px;
+    border-style: solid;
+
+    padding: 20px;
+    margin-left:6%;
+
+  }
+
+  .tieude {
+    margin-top: 20px;
+    font-size: 50px;
+    text-align: center;
+
+  }
+  .img-fluid{
+    padding-top: 3%
+    
+    
+  }
+
+
+</style>
+
+<body>
+
+  <% include header.ejs %>
+  
+
+
+  <div class="tieude"><b>Danh Sách Phim Mới</b></div>
+  <div class="container-fluid">
+
+    <div id="index"class="row">
+     
+      <div ng-repeat="phim in listphim | filter:{tenPhim:tenPhim} " class="col-md-3 movie" >
+        
+        <a href="/{{phim._id}}" style="text-decoration:null;color: black;">
+          <img id="image"ng-src="images/logo.jpg"src="/images/{{phim.hinh}}" class="img-fluid" 
+            style="height: 350px; width:500px;object-fit: cover;">
+          <div><label style="margin-top:20px " for="exampleInputName"><b style="font-size: 50px"> {{phim.tenPhim}}</b></label></div>
+          <div><label for="exampleInputName" style="font-size: 30px"><b>Thể loại: {{phim.theLoai}}</b></label></div>
+         <label> <span ng-non-bindable></span><b style="font-size: 30px"> Khởi Chiếu: <span>{{phim.phatHanh | date:'MM/dd/yyyy'}}</b></span><br></label>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <footer >
+    <% include footer.ejs %>
+ </footer>
+  
+</body>
+<script src="stylesheet" href="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/javascripts/index.js"></script>
+<script src="/javascripts/common.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
 </html>
