@@ -15,22 +15,20 @@ app.controller('loginController', function ($scope, $http) {
                 Email: $scope.Email,
                 password: $scope.passWord
             }
-            $http.post( '/api/user/sign-in', data).then(function (res) {
+            $http.post( '/api/user/signin', data).then(function (res) {
                 window.console.log(res)
-                
-                if (res.data === true) {
-                    let email = res.config.data.Email;
-                    setCookie('email',email);
-                    window.location.href = "/"
+              
                     
-                }
-                else {
-                    window.alert('Sai email hoặc mật khẩu!')
-                }
+                    setCookie('email', $scope.Email);
+                    setCookie('tenNguoiDung',res.data.user.tenNguoiDung);
+                    window.location.href = "/"
+            
             }).catch(function(res){
                 console.log(res)
+                window.alert(res.data.errorMessage);
             })
         }
     }
+    
 
 });

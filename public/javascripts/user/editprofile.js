@@ -9,7 +9,14 @@ app.controller('editprofileController', function ($scope, $http) {
         $scope.tenNguoiDung = res.data.userInfomation.tenNguoiDung;
         $scope.Email = res.data.userInfomation.Email;
         $scope.hinh =res.data.userInfomation.hinh;
-    
+        // $scope.checkImage=function(){
+        //     if(!res.data.hinh){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+             
+        //  }
              
     });
 
@@ -20,31 +27,45 @@ app.controller('editprofileController', function ($scope, $http) {
     
         $http({
             method: 'PUT',
-            url: '/api/user',
+            url: window.location.origin+'/api/user',
             data: formData,
             headers: { 'Content-Type': undefined }
         }).then(function (res) {
             window.alert('Lưu thông tin thành công');
+            setCookie("tenNguoiDung",res.data.user.tenNguoiDung)
             window.location.href = "/";
         }).catch(function (res) {
             console.log(res)
+            window.alert(res.data.errorMessage);
         })
        
     }
-    
+   
     
     $scope.chooseImage=function(){
     
         document.getElementById("fileUpdateImage").click()
     }
     $scope.logOut = function(){
-        $http.get('/api/user').then(function (res) {
+        $http.get('/api/user/logout').then(function (res) {
 
-               setCookie ('email','')
-            window.location.href="/"
+               
+               delete_cookie('email');
+               window.location.href="/"
             })
 
     }
+    $scope.check= function(){
+        $scope.email=getCookie("email");
+        if(!$scope.email){
+           return false;
+        }
+        
+            return true;
+        
+        
+    }
+    
  
 });
 

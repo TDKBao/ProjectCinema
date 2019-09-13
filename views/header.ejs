@@ -27,13 +27,6 @@
                     <input style="float: left;height: 40px;font-size: 20px;width: 250px;" type="text" class="form-control"
                         id="clickfilter" placeholder="Nhập tên phim" ng-model="tenPhim">
                     <i style="margin-left: 10px;float: left;color:white;font-size:35px" class="fas fa-search"></i>
-                    <!-- <select id="theLoai"class="form-control"style="float:left;height: 40px;font-size: 20px; margin-left: 20px;width: 150px;" >
-                                    <option>Hành Động</option>
-                                    <option>Tình Cảm</option>
-                                    <option>Hài</option>
-                                    <option>Kinh Dị</option>
-                                    <option>Hoạt Hình</option>
-                                </select>  -->
 
                 </i> </i>
             </a>
@@ -47,7 +40,7 @@
                 <ul class="navbar-nav" style="margin-left:auto" ng-show="checkLogin">
                     <li class="navbar-nav" style="margin-left:auto ">
                         <a id="user"href="/user/profile" class="customcolor textbold " style="margin-right:20px">
-                            <i class="fas fa-user"></i> {{user.tenNguoiDung}}</a>
+                            <i class="fas fa-user"></i> {{tenNguoiDung}}</a>
                     </li>
                     <li class="navbar-nav" style="margin-left:auto " ng-show="checkLogin">
                         <a id="btnTaoPhim" class="customcolor textbold uppercase" href="/movie/create">Tạo phim</a>

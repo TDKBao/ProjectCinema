@@ -4,6 +4,8 @@ const Phim = mongoose.model('Phim');
 
 const taoPhim = async function (data) {
     var phim = new Phim(data);
+    // phim.nguoiTao=
+    phim.ngayTao = Date.now()
     await phim.save();
     return {
         phim
@@ -12,7 +14,7 @@ const taoPhim = async function (data) {
 }
 
 const layPhim = async function () {//sort ngay ngan nhat
-    var listphim = await Phim.find().sort({ "ngayTao": -1 });
+    var listphim = await Phim.find().sort({"ngayTao":-1});
     return {
         listphim
     }
@@ -53,16 +55,15 @@ const xoaPhim = async function (id) {
     let phim = await Phim.findOne({ _id: id });
     phim.remove();
     return {
-        mess: 'Xóa Phim thành công!'
+        mess:'Xóa Phim thành công!'
     }
 }
-
 
 module.exports = {
     taoPhim: taoPhim,
     layPhim: layPhim,
     layChiTietPhim: layChiTietPhim,
-    suaPhim: suaPhim,
-    xoaPhim: xoaPhim
+    suaPhim:suaPhim,
+    xoaPhim:xoaPhim
 }
 

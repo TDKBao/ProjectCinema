@@ -9,7 +9,7 @@ var jwt= require('jsonwebtoken');
 require('./api/model/Movie');
 require('./api/model/User');
 
-
+// require('./api/controller/passport').createPassportConfig(app)
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var movieRouter = require('./api/route/movie');
@@ -36,6 +36,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/movie', movieRouter);
 app.use('/api/user', userRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

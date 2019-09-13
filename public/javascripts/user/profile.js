@@ -1,20 +1,18 @@
 var app = angular.module('movie', []);
 
 app.controller('profileController', function ($scope, $http) {
+    
+    $scope.tenNguoiDung=getCookie("tenNguoiDung");
     $scope.checkLogin=true;
     $http.get(window.location.origin+"/api/user/profile").then(function(res){
          $scope.userinfomation= res.data.userInfomation;
 
-    }).catch(function(res){
+        }).catch(function(res){
         console.log(res)
     })
     $scope.changePassword=function(){
-        if(!$scope.oldPassword || !$scope.newPassword){
-            window.alert('Vui lòng nhập mật khẩu để đổi')
-        }
-        else if(!$scope.newPassword)
-        {
-            window.alert('Mật khẩu không được để trống')
+        if(!$scope.oldPassword){
+            window.alert('Chưa nhập password !')
         }
         else if($scope.confirmPassword!==$scope.newPassword){
             window.alert('Xác nhận mật khẩu không đúng !')
@@ -27,22 +25,25 @@ app.controller('profileController', function ($scope, $http) {
             Email:$scope.Email
         }
         $http.put("/api/user/password",data).then(function(res){
-           if(res.data.check===true){
             window.alert("Đổi mật khẩu thành công")
             window.location.href="/"
-           }else{
-                window.alert("Mật Khẩu cũ không đúng!")
-            }
-           
-          
-                 
-        });
+        }).catch(function(res){
+            console.log(res)
+            window.alert(res.data.errorMessage);
+        })
     
     }
 }
 
+     
+    // $scope.chooseImage=function(){
+    
+    //     document.getElementById("fileInput").click()}
+   
     $scope.logOut = function(){
-        $http.get('/api/user').then(function (res) {
+        $http.get('/api/user/logout').then(function (res) {
+
+            
                delete_cookie('email');
                window.location.href="/"
             })
@@ -59,3 +60,18 @@ app.controller('profileController', function ($scope, $http) {
         
     }
 });
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
+
+//         reader.onload = function (e) {
+//             $('#img')
+//                 .attr('src', e.target.result);
+//         };
+
+//         reader.readAsDataURL(input.files[0]);
+//         formData.append("hinh",input.files[0]);
+               
+         
+//     }
+// }

@@ -2,11 +2,11 @@ var express = require('express');
 var session = require('express-session')
 var router = express.Router();
 var userController = require('../controller/userController');
-var authController = require('../controller/authController');
-
+// var authController = require('../controller/authController');
 var jwt = require('jsonwebtoken');
 var fileUpload = require('express-fileupload');
 const path = require('path');
+// var passport = require('../controller/passport').passport
 
 router.get('/profile', async function (req, res) {
     try {
@@ -16,37 +16,21 @@ router.get('/profile', async function (req, res) {
         res.send({
             status: 200,
             userInfomation,
+
         })
     } catch (error) {
+        console.log(error)
+        res.status(500).send({ errorMessage: error.message })
 
     }
 })
 
 
-router.post('/sign-up', async function (req, res) {
-    try {
-        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
-        req.session.token = token;
-        var user = await userController.taoUser(req.body);
-        user = JSON.parse(JSON.stringify(user))
-        delete user.password;
-        res.send({
-            token:token,
-            status: 200,
-            user: user,
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(500).send({ errorMessage: error.message })
-    }
-
-
-});
-router.get('/sign-out', async function (req, res) {
+router.get('/logout', async function (req, res) {
     try {
         req.session.destroy();
         res.send({
-            status: 200,
+            status:200,
             mess: 'LogOut Thành công'
         })
 
@@ -57,16 +41,36 @@ router.get('/sign-out', async function (req, res) {
     }
 
 })
-router.post('/sign-in', async function (req, res) {
-    try {
 
+router.post('/signup', async function (req, res) {
+    try {
+        //? lai con de x-acess-token vao khong
+        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
+        req.session.token = token;
+        var user = await userController.taoUser(req.body);
+        user = JSON.parse(JSON.stringify(user))
+        delete user.password;
+        res.send({
+            token,
+            user
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ errorMessage: error.message })
+    }
+
+
+});
+
+router.post('/signin', async function (req, res) {
+    try {
         var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
         req.session.token = token;
         var user = await userController.checkLogin(req.body);
+
         res.send({
-            token: token,
-            user , 
-            status: 200,
+            token:token,
+            user
         })
     } catch (error) {
         console.log(error)
@@ -75,38 +79,72 @@ router.post('/sign-in', async function (req, res) {
 });
 
 router.put('/', fileUpload(), async function (req, res) {
+
     try {
-       
+        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
+        req.session.token = token;
+        var user
         if (!req.files) {
-            req.body.hinh = "user.png";
-            var user = await userController.editProfile(req.body);
-            res.send(user)
+            user = await userController.editProfile(req.body);
         }
         else {
             var file = req.files.hinh;
             req.body.hinh = file.name;
-            // luu file
             var url = path.join(path.join(__dirname, '../../'), 'public/images/');
             file.mv(url + req.files.hinh.name, async function () {
-                var user = await userController.editProfile(req.body);
-                res.send(user)
+                user = await userController.editProfile(req.body);
+
             })
+
         }
+        res.send(user)
+
     } catch (error) {
         console.log(error)
         res.status(500).send({ errorMessage: error.message })
     }
 });
-
 router.put('/password', async function (req, res) {
     try {
-        
-        user = await userController.changePassword(req.body);
+        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
+        req.session.token = token;
+        user = await userController.changePass(req.body);
         res.send(user)
     } catch (error) {
         console.log(error)
         res.status(500).send({ errorMessage: error.message })
     }
 });
+router.put('/passwordReset',async function(req,res){
+    try {
+        var token = jwt.sign({ data: req.body.Email }, 'secret', { expiresIn: '1y' });
+        req.session.token = token;
+        user= await userController.resetPassword(req.body,req.headers.host)
+
+        res.send(user);
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ errorMessage: error.message })
+    }
+})
+router.put('/resetpassword/:token',async function(req,res){
+    var email=jwt.decode(req.params.token);
+    user= await userController.changePassword(email.Email)
+    res.send(user);
+})
+// router.get('/google', passport.authController('google', { scope:
+//     [ 'https://www.googleapis.com/user/userinfo.email',
+//       'https://www.googleapis.com/user/userinfo.profile' ] }))
+//   router.get('/google/callback', function (req, res, next) {
+//     passport.authenticate('google', function (err, user, info) {
+//       if (err) {
+//         return res.send({ errorMessage: err })
+//       }
+//       res.render('cinema/home', { title: 'Home', token: info.token })
+//     })(req, res, next)
+//   })
+
+
 module.exports = router;
 

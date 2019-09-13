@@ -11,6 +11,7 @@ router.get('/movie/create', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
+
   res.render('movie/detail', { id:id });
 });
 
@@ -33,6 +34,15 @@ router.get('/edit/:id', function(req, res, next) {
   res.render('movie/edit', { id:id });
 });
 
+router.get('/user/resetpassword', function(req, res, next) {
+  res.render('user/resetpassword', { title: 'Reset Password' });
+});
+
+router.get('/user/resetpassword/:token', function(req, res, next) {
+  var token=req.params.token
+
+  res.render('user/displaypassword', { title: 'Reset Password', token: token || '' });
+});
 
 
 
